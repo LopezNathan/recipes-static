@@ -2,11 +2,21 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 
+const TOP_TAG_COUNT = 10;
+
 const recipes = (await getCollection('recipes')).sort((a, b) =>
   a.data.title.localeCompare(b.data.title),
 );
 
-const allTags = [...new Set(recipes.flatMap((r) => r.data.tags))].sort();
+const tagCounts = new Map<string, number>();
+for (const r of recipes) {
+  for (const tag of r.data.tags) tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+}
+const sortedTags = [...tagCounts.entries()].sort(
+  (a, b) => b[1] - a[1] || a[0].localeCompare(b[0]),
+);
+const topTags = sortedTags.slice(0, TOP_TAG_COUNT).map(([tag]) => tag);
+const restTags = sortedTags.slice(TOP_TAG_COUNT).map(([tag]) => tag);
 
 function totalTime(t: { prep: number; cook: number }) {
   return t.prep + t.cook;
@@ -15,16 +25,44 @@ function totalTime(t: { prep: number; cook: number }) {
 
 <Base title="Recipes" description="A static recipe collection.">
   <h1>Recipes</h1>
-  <p class="muted">{recipes.length} recipes. Filter by tag:</p>
+  <p class="muted">{recipes.length} recipes.</p>
+
+  <input
+    type="search"
+    id="recipeSearch"
+    class="search-input"
+    placeholder="Search recipes…"
+    aria-label="Search recipes"
+  />
 
   <div class="tags" id="tagFilter">
     <button type="button" class="tag active" data-tag="" aria-pressed="true">all</button>
     {
-      allTags.map((tag) => (
+      topTags.map((tag) => (
         <button type="button" class="tag" data-tag={tag} aria-pressed="false">
           {tag}
         </button>
       ))
+    }
+    {
+      restTags.map((tag) => (
+        <button type="button" class="tag tag-extra" data-tag={tag} aria-pressed="false" hidden>
+          {tag}
+        </button>
+      ))
+    }
+    {
+      restTags.length > 0 && (
+        <button
+          type="button"
+          class="chip-toggle"
+          id="moreTagsToggle"
+          aria-expanded="false"
+          data-count={restTags.length}
+        >
+          +{restTags.length} more
+        </button>
+      )
     }
   </div>
 
@@ -42,22 +80,53 @@ function totalTime(t: { prep: number; cook: number }) {
     }
   </div>
 
+  <p class="muted" id="noResults" hidden>No recipes match.</p>
+
   <script>
+    const search = document.getElementById('recipeSearch') as HTMLInputElement | null;
     const filter = document.getElementById('tagFilter');
+    const moreToggle = document.getElementById('moreTagsToggle');
     const grid = document.getElementById('recipeGrid');
+    const noResults = document.getElementById('noResults');
+    let activeTag = '';
+
+    function applyFilters() {
+      const query = (search?.value ?? '').trim().toLowerCase();
+      let visible = 0;
+      grid?.querySelectorAll<HTMLElement>('.card').forEach((card) => {
+        const tags = (card.dataset.tags ?? '').split(' ');
+        const title = (card.querySelector('h3')?.textContent ?? '').toLowerCase();
+        const matchesTag = !activeTag || tags.includes(activeTag);
+        const matchesSearch = !query || title.includes(query);
+        const show = matchesTag && matchesSearch;
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      if (noResults) noResults.hidden = visible > 0;
+    }
+
     filter?.addEventListener('click', (e) => {
-      const btn = (e.target as HTMLElement).closest('button');
+      const btn = (e.target as HTMLElement).closest('button.tag');
       if (!btn) return;
-      const tag = btn.dataset.tag ?? '';
-      filter.querySelectorAll('button').forEach((b) => {
+      activeTag = (btn as HTMLElement).dataset.tag ?? '';
+      filter.querySelectorAll('button.tag').forEach((b) => {
         const on = b === btn;
         b.classList.toggle('active', on);
         b.setAttribute('aria-pressed', String(on));
       });
-      grid?.querySelectorAll<HTMLElement>('.card').forEach((card) => {
-        const tags = (card.dataset.tags ?? '').split(' ');
-        card.style.display = !tag || tags.includes(tag) ? '' : 'none';
+      applyFilters();
+    });
+
+    moreToggle?.addEventListener('click', () => {
+      const expanded = moreToggle.getAttribute('aria-expanded') === 'true';
+      moreToggle.setAttribute('aria-expanded', String(!expanded));
+      const count = moreToggle.dataset.count ?? '0';
+      moreToggle.textContent = expanded ? `+${count} more` : 'Show fewer tags';
+      filter?.querySelectorAll<HTMLElement>('.tag-extra').forEach((el) => {
+        el.hidden = expanded;
       });
     });
+
+    search?.addEventListener('input', applyFilters);
   </script>
 </Base>

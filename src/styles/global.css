@@ -107,6 +107,26 @@ h2 {
   font-size: 0.85rem;
 }
 
+/* search input */
+.search-input {
+  display: block;
+  width: 100%;
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.55rem 0.8rem;
+  margin: 0.75rem 0;
+}
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.search-input::placeholder {
+  color: var(--muted);
+}
+
 /* tag chips */
 .tags {
   display: flex;
@@ -114,7 +134,8 @@ h2 {
   gap: 0.4rem;
   margin: 0.75rem 0;
 }
-.tag {
+.tag,
+.chip-toggle {
   display: inline-block;
   padding: 0.15rem 0.6rem;
   border-radius: 999px;
@@ -124,7 +145,8 @@ h2 {
   font-size: 0.8rem;
   cursor: pointer;
 }
-.tag:hover {
+.tag:hover,
+.chip-toggle:hover {
   text-decoration: none;
   border-color: var(--accent);
 }
@@ -132,6 +154,12 @@ h2 {
 .tag.active {
   background: var(--accent-weak);
   border-color: var(--accent);
+  color: var(--accent);
+}
+.chip-toggle {
+  font-style: italic;
+}
+.chip-toggle[aria-expanded='true'] {
   color: var(--accent);
 }
 
@@ -210,7 +238,38 @@ label.check {
   display: flex;
   gap: 0.6rem;
   align-items: center;
-  padding: 0.4rem 0;
+  padding: 0.4rem 0.2rem;
+  border-radius: 6px;
+}
+label.check:hover {
+  background: var(--surface-2);
+}
+
+/* grocery page layout */
+.grocery-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 2rem;
+}
+@media (max-width: 42rem) {
+  .grocery-layout {
+    grid-template-columns: 1fr;
+  }
+}
+.grocery-result {
+  position: sticky;
+  top: 1rem;
+}
+@media (max-width: 42rem) {
+  .grocery-result {
+    position: static;
+  }
+}
+.recipe-picker-list {
+  max-height: 24rem;
+  overflow-y: auto;
+  padding-right: 0.25rem;
 }
 
 .visually-hidden {

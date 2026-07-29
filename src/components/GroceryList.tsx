@@ -39,6 +39,7 @@ function loadState(): State {
 
 export default function GroceryList({ recipes }: Props) {
   const [state, setState] = useState<State>({});
+  const [query, setQuery] = useState('');
 
   // hydrate from localStorage after mount (avoids SSR mismatch)
   useEffect(() => {
@@ -88,61 +89,80 @@ export default function GroceryList({ recipes }: Props) {
 
   const anySelected = recipes.some((r) => sel(r.slug, r.baseServings).selected);
 
-  return (
-    <div>
-      <h2>Recipes</h2>
-      {recipes.map((r) => {
-        const s = sel(r.slug, r.baseServings);
-        return (
-          <label class="check" key={r.slug}>
-            <input type="checkbox" checked={s.selected} onChange={() => toggle(r.slug, r.baseServings)} />
-            <span style="flex:1">{r.title}</span>
-            <span class="stepper">
-              <button
-                type="button"
-                aria-label="fewer servings"
-                disabled={s.servings <= 1}
-                onClick={() => setServings(r.slug, r.baseServings, Math.max(1, s.servings - 1))}
-              >
-                −
-              </button>
-              <output>{s.servings}</output>
-              <button
-                type="button"
-                aria-label="more servings"
-                disabled={s.servings >= 12}
-                onClick={() => setServings(r.slug, r.baseServings, Math.min(12, s.servings + 1))}
-              >
-                +
-              </button>
-            </span>
-          </label>
-        );
-      })}
+  const q = query.trim().toLowerCase();
+  const visibleRecipes = recipes.filter(
+    (r) => sel(r.slug, r.baseServings).selected || !q || r.title.toLowerCase().includes(q),
+  );
 
-      <hr />
-      <h2>Grocery list</h2>
-      {!anySelected && <p class="muted">Select recipes above to build your list.</p>}
-      {anySelected && merged.length === 0 && <p class="muted">No quantifiable ingredients.</p>}
-      <ul class="ingredients">
-        {merged.map((m) => (
-          <li key={m.key}>{m.display}</li>
-        ))}
-      </ul>
-      {anySelected && (
-        <p>
-          <button
-            type="button"
-            onClick={() => setState((s) => {
-              const next: State = {};
-              for (const k of Object.keys(s)) next[k] = { ...s[k], selected: false };
-              return next;
-            })}
-          >
-            Clear selection
-          </button>
-        </p>
-      )}
+  return (
+    <div class="grocery-layout">
+      <div class="grocery-picker">
+        <h2>Recipes</h2>
+        <input
+          type="search"
+          class="search-input"
+          placeholder="Filter recipes…"
+          aria-label="Filter recipes"
+          value={query}
+          onInput={(e) => setQuery((e.target as HTMLInputElement).value)}
+        />
+        <div class="recipe-picker-list">
+          {visibleRecipes.length === 0 && <p class="muted">No recipes match.</p>}
+          {visibleRecipes.map((r) => {
+            const s = sel(r.slug, r.baseServings);
+            return (
+              <label class="check" key={r.slug}>
+                <input type="checkbox" checked={s.selected} onChange={() => toggle(r.slug, r.baseServings)} />
+                <span style="flex:1">{r.title}</span>
+                <span class="stepper">
+                  <button
+                    type="button"
+                    aria-label="fewer servings"
+                    disabled={s.servings <= 1}
+                    onClick={() => setServings(r.slug, r.baseServings, Math.max(1, s.servings - 1))}
+                  >
+                    −
+                  </button>
+                  <output>{s.servings}</output>
+                  <button
+                    type="button"
+                    aria-label="more servings"
+                    disabled={s.servings >= 12}
+                    onClick={() => setServings(r.slug, r.baseServings, Math.min(12, s.servings + 1))}
+                  >
+                    +
+                  </button>
+                </span>
+              </label>
+            );
+          })}
+        </div>
+      </div>
+
+      <div class="grocery-result">
+        <h2>Grocery list</h2>
+        {!anySelected && <p class="muted">Select recipes to build your list.</p>}
+        {anySelected && merged.length === 0 && <p class="muted">No quantifiable ingredients.</p>}
+        <ul class="ingredients">
+          {merged.map((m) => (
+            <li key={m.key}>{m.display}</li>
+          ))}
+        </ul>
+        {anySelected && (
+          <p>
+            <button
+              type="button"
+              onClick={() => setState((s) => {
+                const next: State = {};
+                for (const k of Object.keys(s)) next[k] = { ...s[k], selected: false };
+                return next;
+              })}
+            >
+              Clear selection
+            </button>
+          </p>
+        )}
+      </div>
     </div>
   );
 }
