@@ -5,13 +5,12 @@ time:
   prep: 10
   cook: 20
 tags:
-- dinner
 - american
 - chicken
+- dinner
 - garlic-butter
-- asparagus
-- quick
 - one-pan
+- quick
 - weeknight
 source: https://www.eatwell101.com/garlic-butter-chicken-bites-asparagus-recipe
 ingredients:

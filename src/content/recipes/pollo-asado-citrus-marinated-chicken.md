@@ -5,12 +5,11 @@ time:
   prep: 0
   cook: 0
 tags:
+- chicken
 - dinner
+- grilled
 - marinade
 - mexican
-- chicken
-- citrus
-- grilled
 - spicy
 source: https://joannsfoodforthought.wordpress.com/2015/08/05/pollo-asado-citrus-marinated-chicken/
 ingredients:

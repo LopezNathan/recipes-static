@@ -5,14 +5,12 @@ time:
   prep: 0
   cook: 30
 tags:
-- dinner
 - asian
-- noodles
-- spicy
-- peanuts
-- sesame
 - chicken
+- dinner
+- noodles
 - quick
+- spicy
 source: https://cooking.nytimes.com/recipes/1020732-spicy-sesame-noodles-with-chicken-and-peanuts
 ingredients:
 - qty: 1.5

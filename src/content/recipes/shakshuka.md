@@ -8,12 +8,12 @@ tags:
 - breakfast
 - brunch
 - dinner
-- middle-eastern
 - eggs
-- tomato
-- spicy
-- vegetarian
+- middle-eastern
 - one-pan
+- spicy
+- tomato
+- vegetarian
 source: https://www.themediterraneandish.com/shakshuka-recipe/
 ingredients:
 - qty: 1.0

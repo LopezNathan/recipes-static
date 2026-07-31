@@ -5,13 +5,11 @@ time:
   prep: 0
   cook: 150
 tags:
-- dinner
-- soup
 - cajun
-- turkey
-- gumbo
+- dinner
 - hearty
-- southern
+- soup
+- turkey
 source: https://www.homesicktexan.com/turkey-gumbo-ham-recipe/
 ingredients:
 - qty: null

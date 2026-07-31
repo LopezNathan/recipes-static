@@ -5,8 +5,8 @@ time:
   prep: 10
   cook: 15
 tags:
-  - breakfast
-  - vegetarian
+- breakfast
+- vegetarian
 source: null
 ingredients:
   - qty: 1.5

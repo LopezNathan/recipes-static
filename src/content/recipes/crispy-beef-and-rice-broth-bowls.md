@@ -4,7 +4,13 @@ servings: 6
 time:
   prep: 0
   cook: 0
-tags: []
+tags:
+- asian
+- beef
+- bowls
+- dinner
+- quick
+- spicy
 source: null
 ingredients:
 - qty: null

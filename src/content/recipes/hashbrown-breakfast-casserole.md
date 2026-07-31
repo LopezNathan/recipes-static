@@ -5,14 +5,13 @@ time:
   prep: 20
   cook: 70
 tags:
+- american
 - breakfast
 - brunch
-- american
-- eggs
 - casserole
-- sausage
-- hashbrowns
+- eggs
 - make-ahead
+- sausage
 source: https://www.spendwithpennies.com/hashbrown-breakfast-casserole/
 ingredients:
 - qty: 20.0

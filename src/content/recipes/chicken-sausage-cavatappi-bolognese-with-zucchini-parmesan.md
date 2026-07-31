@@ -9,7 +9,6 @@ tags:
 - italian
 - pasta
 - sausage
-- zucchini
 - weeknight
 source: https://www.hellofresh.com/recipes/chicken-sausage-cavatappi-bolognese-61f98622422b687c017a9408
 ingredients:

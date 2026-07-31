@@ -5,14 +5,14 @@ time:
   prep: 10
   cook: 30
 tags:
-- dinner
-- italian
 - american
-- pasta
+- beef
+- dinner
 - eggs
+- italian
 - one-pot
+- pasta
 - quick
-- ground-beef
 - weeknight
 source: https://damndelicious.net/2016/03/21/one-pot-spaghetti-and-eggs/
 ingredients:

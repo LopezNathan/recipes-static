@@ -8,10 +8,9 @@ tags:
 - dinner
 - italian
 - pasta
-- shrimp
-- seafood
-- garlic
 - quick
+- seafood
+- shrimp
 - weeknight
 source: https://littlesunnykitchen.com/garlic-shrimp-pasta/
 ingredients:

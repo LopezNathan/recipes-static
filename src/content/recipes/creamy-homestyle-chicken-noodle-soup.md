@@ -5,14 +5,14 @@ time:
   prep: 20
   cook: 40
 tags:
-- dinner
-- soup
 - american
 - chicken
-- noodles
-- creamy
 - comfort-food
+- creamy
+- dinner
 - hearty
+- noodles
+- soup
 source: https://www.halfbakedharvest.com/creamy-homestyle-chicken-noodle-soup/
 ingredients:
 - qty: 6.0

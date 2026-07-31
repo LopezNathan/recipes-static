@@ -5,13 +5,12 @@ time:
   prep: 30
   cook: 60
 tags:
+- baked
+- comfort-food
 - dinner
 - italian
-- pasta
-- comfort-food
-- baked
-- cheese
 - make-ahead
+- pasta
 source: https://www.spendwithpennies.com/easy-homemade-lasagna/
 ingredients:
 - qty: 1.0

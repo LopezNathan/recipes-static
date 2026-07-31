@@ -5,13 +5,13 @@ time:
   prep: 20
   cook: 25
 tags:
-- dinner
-- soup
-- italian
-- sausage
-- creamy
-- pasta
 - comfort-food
+- creamy
+- dinner
+- italian
+- pasta
+- sausage
+- soup
 source: https://dashofsanity.com/creamy-italian-sausage-soup/
 ingredients:
 - qty: 16.0

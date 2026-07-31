@@ -5,12 +5,12 @@ time:
   prep: 15
   cook: 15
 tags:
-- dinner
 - asian
 - bowls
-- ground-turkey
+- dinner
 - healthy
 - quick
+- turkey
 - weeknight
 source: https://www.chelseasmessyapron.com/asian-ground-turkey/
 ingredients:

@@ -5,11 +5,11 @@ time:
   prep: 10
   cook: 0
 tags:
+- chicken
+- jalapeno
 - marinade
 - mexican
-- chicken
 - spicy
-- jalape-o
 source: https://thecookful.com/mexican-chicken-marinade/#tasty-recipes-68603-jump-target
 ingredients:
 - qty: 2.0

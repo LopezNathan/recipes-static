@@ -5,14 +5,14 @@ time:
   prep: 0
   cook: 0
 tags:
-- dinner
-- soup
 - american
+- beef
 - comfort-food
-- slow-cooked
+- dinner
 - hearty
 - one-pot
-- chuck-roast
+- slow-cooked
+- soup
 source: https://www.instagram.com/reel/DPHn8RKiWXj/?igsh=MTBneDZkcXpoOHp5eg==
 ingredients:
 - qty: 3.0

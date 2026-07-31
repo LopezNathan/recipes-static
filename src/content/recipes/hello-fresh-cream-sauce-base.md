@@ -5,12 +5,9 @@ time:
   prep: 5
   cook: 5
 tags:
-- sauce
 - french
-- cream-sauce
-- bechamel
-- base
 - quick
+- sauce
 source: https://mysweetprecision.com/hello-fresh-cream-sauce-base/
 ingredients:
 - qty: 2.0

@@ -5,14 +5,14 @@ time:
   prep: 10
   cook: 20
 tags:
-- dinner
 - american
-- salmon
-- seafood
+- baked
+- dinner
+- garlic-butter
 - healthy
 - quick
-- baked
-- garlic-butter
+- salmon
+- seafood
 source: https://www.savorynothings.com/garlic-butter-baked-salmon/
 ingredients:
 - qty: 1.0

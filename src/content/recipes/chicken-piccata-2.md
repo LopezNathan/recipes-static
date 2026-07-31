@@ -5,13 +5,11 @@ time:
   prep: 10
   cook: 30
 tags:
+- chicken
 - dinner
 - italian
-- chicken
 - lemon
-- capers
 - quick
-- pan-sauce
 source: https://www.delish.com/cooking/recipe-ideas/a37992192/easy-chicken-piccata-recipe/?utm_source=google&utm_medium=cpc&utm_campaign=mgu_ga_del_m_bm_prog_org_us_a37992192&gad_source=1&gad_campaignid=20628122326&gbraid=0AAAAACq-IPxY3VSymIA2G7pbPyX1D-TbW&gclid=Cj0KCQiAprLLBhCMARIsAEDhdPdYcdCKnsexAH6BjVfFFOjZ-tRYId-tp-wA9BhOJfOOcLjgwcgWIdAaAhnxEALw_wcB
 ingredients:
 - qty: 3.0

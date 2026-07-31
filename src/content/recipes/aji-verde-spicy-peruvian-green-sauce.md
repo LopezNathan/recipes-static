@@ -5,14 +5,11 @@ time:
   prep: 10
   cook: 10
 tags:
-- sauce
-- condiment
+- jalapeno
 - peruvian
-- spicy
-- cilantro
-- jalape-o
 - quick
-- blender
+- sauce
+- spicy
 source: https://cookieandkate.com/aji-verde-recipe/
 ingredients:
 - qty: 0.5

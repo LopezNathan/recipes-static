@@ -4,7 +4,13 @@ servings: 6
 time:
   prep: 20
   cook: 0
-tags: []
+tags:
+- dinner
+- hearty
+- mexican
+- pork
+- soup
+- spicy
 source: https://www.delish.com/cooking/recipe-ideas/a30875851/pozole-recipe/
 ingredients:
 - qty: 3.0

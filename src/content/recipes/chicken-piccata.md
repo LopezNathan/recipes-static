@@ -5,13 +5,11 @@ time:
   prep: 10
   cook: 30
 tags:
+- chicken
 - dinner
 - italian
-- chicken
 - lemon
-- capers
 - quick
-- pan-sauce
 source: https://themodernproper.com/chicken-piccata
 ingredients:
 - qty: null

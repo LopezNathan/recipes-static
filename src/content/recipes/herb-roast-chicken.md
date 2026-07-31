@@ -5,8 +5,8 @@ time:
   prep: 20
   cook: 90
 tags:
-  - dinner
-  - roast
+- dinner
+- roast
 source: https://example.com/herb-roast-chicken
 rating: 5
 created: 2025-11-02

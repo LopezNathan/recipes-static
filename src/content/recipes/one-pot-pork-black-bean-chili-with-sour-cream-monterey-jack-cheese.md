@@ -4,7 +4,13 @@ servings: 2
 time:
   prep: 35
   cook: 10
-tags: []
+tags:
+- dinner
+- hearty
+- mexican
+- one-pot
+- pork
+- spicy
 source: https://www.hellofresh.com/recipes/one-pot-pork-and-black-bean-chili-6182a14b5d8fff32c7000498
 ingredients:
 - qty: 1.0

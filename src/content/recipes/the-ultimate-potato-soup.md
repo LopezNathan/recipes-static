@@ -5,14 +5,13 @@ time:
   prep: 30
   cook: 0
 tags:
-- dinner
-- soup
 - american
-- potato
 - comfort-food
-- bacon
 - creamy
+- dinner
 - hearty
+- potato
+- soup
 source: https://sugarspunrun.com/creamy-potato-soup-recipe/#recipe
 ingredients:
 - qty: 6.0

@@ -5,13 +5,13 @@ time:
   prep: 0
   cook: 25
 tags:
+- creamy
 - dinner
 - italian
+- lemon
 - pasta
 - sausage
-- creamy
 - weeknight
-- lemon
 source: https://www.hellofresh.com/recipes/pork-sausage-rigatoni-in-a-creamy-sauce-6006f75b5ec9d449ff6e4951
 ingredients:
 - qty: 1.0

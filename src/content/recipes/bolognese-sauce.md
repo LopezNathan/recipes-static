@@ -5,13 +5,11 @@ time:
   prep: 0
   cook: 240
 tags:
-- sauce
+- comfort-food
 - dinner
 - italian
-- pasta-sauce
-- meat-sauce
+- sauce
 - slow-cooked
-- comfort-food
 source: https://cooking.nytimes.com/recipes/1015181-marcella-hazans-bolognese-sauce
 ingredients:
 - qty: 1.0

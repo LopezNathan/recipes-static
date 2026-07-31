@@ -5,15 +5,13 @@ time:
   prep: 15
   cook: 45
 tags:
-- dinner
-- soup
 - american
+- creamy
+- dinner
+- hearty
 - salmon
 - seafood
-- chowder
-- creamy
-- bacon
-- hearty
+- soup
 source: https://themodernproper.com/salmon-chowder
 ingredients:
 - qty: 4.0

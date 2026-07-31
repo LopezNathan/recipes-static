@@ -5,13 +5,13 @@ time:
   prep: 0
   cook: 0
 tags:
-- dinner
 - american
 - beef
 - braised
 - comfort-food
-- slow-cooked
+- dinner
 - hearty
+- slow-cooked
 - special-occasion
 source: https://www.instagram.com/reel/C3RdXSkOx4B/?igsh=MWNoYXQ3OHBjNDU4dg%3D%3D
 ingredients:

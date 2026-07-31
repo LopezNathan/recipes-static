@@ -6,12 +6,10 @@ time:
   cook: 40
 tags:
 - dinner
-- soup
+- hearty
 - italian
 - sausage
-- farro
-- tuscan
-- hearty
+- soup
 source: https://www.hellofresh.com/recipes/tuscan-sausage-and-farro-soup-5bb4d43dae08b57e3b6bed3b
 ingredients:
 - qty: 1.0

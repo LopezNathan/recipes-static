@@ -5,9 +5,9 @@ time:
   prep: 10
   cook: 20
 tags:
-  - dinner
-  - italian
-  - vegetarian
+- dinner
+- italian
+- vegetarian
 source: null
 ingredients:
   - qty: 2

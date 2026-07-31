@@ -5,7 +5,12 @@ servings: 2
 time:
   prep: 40
   cook: 10
-tags: []
+tags:
+- chicken
+- creamy
+- dinner
+- lemon
+- weeknight
 source: https://www.hellofresh.com/recipes/herbed-chicken-and-creamy-lemon-orzo-68ed3d65a267a9c2fbff9c8b
 ingredients:
 - qty: 4.0

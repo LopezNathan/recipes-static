@@ -5,9 +5,9 @@ time:
   prep: 5
   cook: 20
 tags:
-  - dinner
-  - side
-  - vegetarian
+- dinner
+- side
+- vegetarian
 source: null
 ingredients:
   - qty: 1

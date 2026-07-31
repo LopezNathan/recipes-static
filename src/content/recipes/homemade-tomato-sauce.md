@@ -5,11 +5,11 @@ time:
   prep: 15
   cook: 135
 tags:
-- sauce
-- italian
-- tomato
-- make-ahead
 - freezer-friendly
+- italian
+- make-ahead
+- sauce
+- tomato
 source: https://www.onceuponachef.com/recipes/tomato-sauce-basil.html
 ingredients:
 - qty: 4.0

@@ -5,13 +5,12 @@ time:
   prep: 0
   cook: 50
 tags:
-- dinner
+- baked
 - british
 - comfort-food
-- potato
+- dinner
 - hearty
-- baked
-- pub-food
+- potato
 source: https://www.hellofresh.com/recipes/pub-style-shepherds-pie-61f982bf055a054a23694946
 ingredients:
 - qty: 16.0

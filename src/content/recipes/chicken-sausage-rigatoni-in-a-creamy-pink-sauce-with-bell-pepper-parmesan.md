@@ -5,11 +5,11 @@ time:
   prep: 0
   cook: 20
 tags:
+- creamy
 - dinner
 - italian
 - pasta
 - sausage
-- creamy
 - weeknight
 source: https://www.hellofresh.com/recipes/chicken-sausage-rigatoni-621e855307f48b28733f1e80
 ingredients:

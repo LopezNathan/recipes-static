@@ -5,15 +5,13 @@ time:
   prep: 25
   cook: 45
 tags:
-- dinner
-- soup
-- thai
-- noodles
-- coconut
 - curry
+- dinner
+- noodles
+- pork
+- soup
 - spicy
-- lemongrass
-- ground-pork
+- thai
 source: https://docs.google.com/document/d/1X2aDgQtuMrVsduM_qqyLLBlIm5vVd4MjDbyRLO-OntQ/mobilebasic
 ingredients:
 - qty: 1.0

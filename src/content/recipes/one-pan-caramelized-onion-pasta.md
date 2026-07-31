@@ -7,10 +7,9 @@ time:
 tags:
 - dinner
 - italian
-- pasta
 - one-pan
+- pasta
 - vegetarian
-- caramelized-onion
 - weeknight
 source: https://plantyou.com/one-pan-caramelized-onion-pasta/
 ingredients:

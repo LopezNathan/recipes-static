@@ -49,7 +49,14 @@ butter, chicken, egg, flour, garlic, lemon, milk, olive-oil, onion, pasta,
 rice, sugar, tomatoes, water
 
 **Existing `tag` values:**
-breakfast, dinner, italian, roast, side, vegetarian
+american, asian, baked, beef, bowls, braised, breakfast, british, brunch,
+cajun, casserole, chicken, comfort-food, creamy, curry, dinner, eggs,
+family-recipe, freezer-friendly, french, garlic-butter, grilled, healthy,
+hearty, italian, jalapeno, lemon, make-ahead, marinade, mediterranean,
+mexican, middle-eastern, noodles, one-pan, one-pot, pasta, peruvian, pork,
+potato, quick, rice, roast, salmon, sauce, sausage, seafood, shrimp, side,
+slow-cooked, soup, special-occasion, spicy, thai, tomato, turkey,
+vegetarian, weeknight
 
 Regenerate these lists after adding recipes:
 

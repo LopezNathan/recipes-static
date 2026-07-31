@@ -5,14 +5,13 @@ time:
   prep: 30
   cook: 15
 tags:
-- dinner
-- italian
 - american
-- chicken
-- breaded
-- comfort-food
-- family-recipe
 - baked
+- chicken
+- comfort-food
+- dinner
+- family-recipe
+- italian
 source: https://asimplepalate.com/blog/chicken-parmigiana/
 ingredients:
 - qty: null

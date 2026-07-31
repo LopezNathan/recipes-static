@@ -4,7 +4,12 @@ servings: 6
 time:
   prep: 20
   cook: 20
-tags: []
+tags:
+- chicken
+- dinner
+- grilled
+- middle-eastern
+- spicy
 source: https://www.themediterraneandish.com/chicken-kofta-kebab/
 ingredients:
 - qty: 1.0

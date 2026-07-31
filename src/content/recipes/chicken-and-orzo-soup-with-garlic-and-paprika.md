@@ -5,14 +5,11 @@ time:
   prep: 0
   cook: 40
 tags:
-- dinner
-- soup
-- mediterranean
 - chicken
-- orzo
-- paprika
-- garlic
+- dinner
 - hearty
+- mediterranean
+- soup
 source: https://www.177milkstreet.com/recipes/chicken-and-orzo-soup-cookish
 ingredients:
 - qty: 3.0
