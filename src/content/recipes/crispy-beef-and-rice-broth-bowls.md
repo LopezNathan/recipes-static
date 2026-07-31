@@ -13,21 +13,18 @@ tags:
 - spicy
 source: null
 ingredients:
-- qty: null
-  unit: null
-  item: '### Beef'
 - qty: 2.0
   unit: lb
   item: ground beef (96/4)
 - qty: 0.25
   unit: cup
-  item: (72 g) hoisin sauce
+  item: hoisin sauce
 - qty: 0.25
   unit: cup
-  item: (60 g) rice vinegar
+  item: rice vinegar
 - qty: 0.25
   unit: cup
-  item: (60 g) coconut aminos or low-sodium soy sauce
+  item: coconut aminos or low-sodium soy sauce
 - qty: 2.0
   unit: tsp
   item: Chinese five spice

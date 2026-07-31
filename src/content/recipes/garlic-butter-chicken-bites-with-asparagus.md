@@ -8,15 +8,11 @@ tags:
 - american
 - chicken
 - dinner
-- garlic-butter
 - one-pan
 - quick
 - weeknight
 source: https://www.eatwell101.com/garlic-butter-chicken-bites-asparagus-recipe
 ingredients:
-- qty: null
-  unit: null
-  item: 'For the chicken seasoning: For the chicken seasoning:'
 - qty: 1.0
   unit: tsp
   item: salt
@@ -50,7 +46,7 @@ ingredients:
   item: hot sauce, optional (we used Sriracha)
 - qty: 0.5
   unit: cup
-  item: (125ml) low-sodium chicken broth
+  item: low-sodium chicken broth
 - qty: null
   unit: null
   item: Juice of 1/2 lemon

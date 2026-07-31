@@ -29,9 +29,9 @@ ingredients:
 - qty: 0.3333
   unit: cup
   item: all-purpose flour (42g)
-- qty: 2.0
-  unit: null
-  item: ½ lbs gold potatoes peeled and diced into pieces no larger than 1” (this was about 6 Large potatoes
+- qty: 2.5
+  unit: lb
+  item: gold potatoes peeled and diced into pieces no larger than 1” (this was about 6 Large potatoes
     for me/1.15kg)
 - qty: 4.0
   unit: cup
@@ -42,15 +42,15 @@ ingredients:
 - qty: 0.6667
   unit: cup
   item: heavy cream (155ml)
-- qty: 1.0
-  unit: null
-  item: ½ teaspoon* salt
+- qty: 1.5
+  unit: tsp
+  item: salt
 - qty: 1.0
   unit: tsp
   item: ground pepper
 - qty: 0.25
-  unit: null
-  item: '- ½ teaspoon ancho chili powder**'
+  unit: tsp
+  item: ancho chili powder
 - qty: 0.6667
   unit: cup
   item: sour cream (160g)

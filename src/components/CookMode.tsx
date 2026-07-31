@@ -28,8 +28,12 @@ function ingredientLine(ing: Ingredient, servings: number, base: number): string
 }
 
 function mmss(total: number): string {
-  const m = Math.floor(total / 60);
+  const h = Math.floor(total / 3600);
+  const m = Math.floor((total % 3600) / 60);
   const s = total % 60;
+  if (h > 0) {
+    return `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  }
   return `${m}:${String(s).padStart(2, '0')}`;
 }
 
@@ -116,70 +120,76 @@ export default function CookMode({ baseServings, ingredients, steps }: Props) {
         </button>
       </div>
 
-      <h2>
-        Ingredients{' '}
-        {checked.size > 0 && (
-          <span class="progress">
-            {checked.size}/{ingredients.length}
-          </span>
-        )}
-      </h2>
-      <ul class="ingredients check-list">
-        {ingredients.map((ing, i) => (
-          <li key={i} class={`ing-item${checked.has(i) ? ' checked' : ''}`}>
-            <label>
-              <input
-                type="checkbox"
-                checked={checked.has(i)}
-                onChange={() => setChecked((s) => toggle(s, i))}
-              />
-              <span class="ing-text">{ingredientLine(ing, servings, baseServings)}</span>
-            </label>
-          </li>
-        ))}
-      </ul>
+      <div class="cook-grid">
+        <div>
+          <h2>
+            Ingredients{' '}
+            {checked.size > 0 && (
+              <span class="progress">
+                {checked.size}/{ingredients.length}
+              </span>
+            )}
+          </h2>
+          <ul class="ingredients check-list">
+            {ingredients.map((ing, i) => (
+              <li key={i} class={`ing-item${checked.has(i) ? ' checked' : ''}`}>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={checked.has(i)}
+                    onChange={() => setChecked((s) => toggle(s, i))}
+                  />
+                  <span class="ing-text">{ingredientLine(ing, servings, baseServings)}</span>
+                </label>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      <h2>
-        Steps{' '}
-        {done.size > 0 && (
-          <span class="progress">
-            {done.size}/{steps.length}
-          </span>
-        )}
-      </h2>
-      <ol class="steps step-cards">
-        {steps.map((step, i) => (
-          <li
-            key={i}
-            class={`step-card${done.has(i) ? ' done' : ''}`}
-            // Clicking anywhere on the card toggles done, except inside the
-            // timer controls. The checkbox keeps it keyboard/AT accessible.
-            onClick={(e) => {
-              const t = e.target as HTMLElement;
-              if (t.closest('.step-timer')) return; // timer controls
-              if (t.closest('label')) return; // the label toggles itself
-              setDone((s) => toggle(s, i));
-            }}
-          >
-            {/* The number circle is the toggle: it shows the step number, or a
-                check once done. The input stays in the DOM for keyboard/AT. */}
-            <label class="step-toggle">
-              <input
-                type="checkbox"
-                class="visually-hidden"
-                checked={done.has(i)}
-                onChange={() => setDone((s) => toggle(s, i))}
-              />
-              <span class="step-num">{done.has(i) ? '✓' : i + 1}</span>
-              <span class="visually-hidden">Mark step {i + 1} done</span>
-            </label>
-            <div class="step-body">
-              <p class="step-text">{step.text}</p>
-              {step.timer ? <StepTimer seconds={step.timer} /> : null}
-            </div>
-          </li>
-        ))}
-      </ol>
+        <div>
+          <h2>
+            Steps{' '}
+            {done.size > 0 && (
+              <span class="progress">
+                {done.size}/{steps.length}
+              </span>
+            )}
+          </h2>
+          <ol class="steps step-cards">
+            {steps.map((step, i) => (
+              <li
+                key={i}
+                class={`step-card${done.has(i) ? ' done' : ''}`}
+                // Clicking anywhere on the card toggles done, except inside the
+                // timer controls. The checkbox keeps it keyboard/AT accessible.
+                onClick={(e) => {
+                  const t = e.target as HTMLElement;
+                  if (t.closest('.step-timer')) return; // timer controls
+                  if (t.closest('label')) return; // the label toggles itself
+                  setDone((s) => toggle(s, i));
+                }}
+              >
+                {/* The number circle is the toggle: it shows the step number, or a
+                    check once done. The input stays in the DOM for keyboard/AT. */}
+                <label class="step-toggle">
+                  <input
+                    type="checkbox"
+                    class="visually-hidden"
+                    checked={done.has(i)}
+                    onChange={() => setDone((s) => toggle(s, i))}
+                  />
+                  <span class="step-num">{done.has(i) ? '✓' : i + 1}</span>
+                  <span class="visually-hidden">Mark step {i + 1} done</span>
+                </label>
+                <div class="step-body">
+                  <p class="step-text">{step.text}</p>
+                  {step.timer ? <StepTimer seconds={step.timer} /> : null}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
     </div>
   );
 }

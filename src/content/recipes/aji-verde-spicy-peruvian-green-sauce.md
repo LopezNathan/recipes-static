@@ -5,7 +5,6 @@ time:
   prep: 10
   cook: 10
 tags:
-- jalapeno
 - peruvian
 - quick
 - sauce
@@ -27,7 +26,7 @@ ingredients:
   item: cloves garlic, roughly chopped
 - qty: 0.3333
   unit: cup
-  item: (1 ounce) grated Cotija or Parmesan cheese
+  item: grated Cotija or Parmesan cheese
 - qty: 1.0
   unit: tbsp
   item: lime juice

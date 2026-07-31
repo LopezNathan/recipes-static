@@ -31,8 +31,8 @@ ingredients:
   unit: cup
   item: chopped fresh mint
 - qty: 1.0
-  unit: null
-  item: to 2 tablespoons harissa (depending on how spicy you like it)
+  unit: tbsp
+  item: harissa (depending on how spicy you like it)
 - qty: 1.0
   unit: tbsp
   item: tomato paste

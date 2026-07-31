@@ -51,12 +51,17 @@ rice, sugar, tomatoes, water
 **Existing `tag` values:**
 american, asian, baked, beef, bowls, braised, breakfast, british, brunch,
 cajun, casserole, chicken, comfort-food, creamy, curry, dinner, eggs,
-family-recipe, freezer-friendly, french, garlic-butter, grilled, healthy,
-hearty, italian, jalapeno, lemon, make-ahead, marinade, mediterranean,
-mexican, middle-eastern, noodles, one-pan, one-pot, pasta, peruvian, pork,
-potato, quick, rice, roast, salmon, sauce, sausage, seafood, shrimp, side,
-slow-cooked, soup, special-occasion, spicy, thai, tomato, turkey,
-vegetarian, weeknight
+family-recipe, freezer-friendly, french, grilled, healthy, hearty, italian,
+make-ahead, marinade, mediterranean, mexican, middle-eastern, noodles,
+one-pan, one-pot, pasta, peruvian, pork, potato, quick, rice, roast,
+salmon, sauce, sausage, seafood, shrimp, side, slow-cooked, soup,
+special-occasion, spicy, thai, turkey, vegetarian, weeknight
+
+Tags are cuisine, meal-type, course, cooking method, dietary, effort/style,
+or main protein/starch (chicken, beef, pork, turkey, sausage, seafood,
+salmon, shrimp, eggs, rice, potato) — not individual flavor ingredients
+(no "lemon", "garlic", "paprika", etc.). If it's in the ingredients list
+already, it doesn't need to also be a tag.
 
 Regenerate these lists after adding recipes:
 

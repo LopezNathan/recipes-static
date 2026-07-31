@@ -6,7 +6,6 @@ time:
   cook: 0
 tags:
 - chicken
-- jalapeno
 - marinade
 - mexican
 - spicy

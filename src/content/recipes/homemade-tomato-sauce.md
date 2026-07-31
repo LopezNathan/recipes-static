@@ -9,7 +9,6 @@ tags:
 - italian
 - make-ahead
 - sauce
-- tomato
 source: https://www.onceuponachef.com/recipes/tomato-sauce-basil.html
 ingredients:
 - qty: 4.0
@@ -27,9 +26,9 @@ ingredients:
 - qty: 4.0
   unit: null
   item: cloves garlic, peeled and smashed
-- qty: 1.0
-  unit: null
-  item: ¼ teaspoons salt
+- qty: 1.25
+  unit: tsp
+  item: salt
 - qty: 1.0
   unit: tsp
   item: sugar

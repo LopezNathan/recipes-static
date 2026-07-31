@@ -41,9 +41,9 @@ ingredients:
 - qty: 0.5
   unit: tsp
   item: Italian seasoning or your favorite herbs and spices, optional
-- qty: null
-  unit: null
-  item: ½ teaspoon Kosher salt or
+- qty: 0.5
+  unit: tsp
+  item: Kosher salt, more to taste
 - qty: 0.25
   unit: tsp
   item: black pepper

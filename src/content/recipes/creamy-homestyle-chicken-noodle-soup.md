@@ -49,8 +49,8 @@ ingredients:
   unit: lb
   item: boneless chicken breasts or thighs
 - qty: 2.0
-  unit: null
-  item: -3 cups egg noodles
+  unit: cup
+  item: egg noodles
 - qty: 1.0
   unit: cup
   item: whole milk or cream

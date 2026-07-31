@@ -9,7 +9,6 @@ tags:
 - chicken
 - creamy
 - dinner
-- lemon
 - weeknight
 source: https://www.hellofresh.com/recipes/herbed-chicken-and-creamy-lemon-orzo-68ed3d65a267a9c2fbff9c8b
 ingredients:
@@ -18,16 +17,16 @@ ingredients:
   item: Orzo Pasta
 - qty: 1.0
   unit: null
-  item: unit Zucchini
+  item: Zucchini
 - qty: 2.0
   unit: tbsp
   item: Cream Cheese
 - qty: 1.0
   unit: null
-  item: unit Chicken Stock Concentrate
+  item: Chicken Stock Concentrate
 - qty: 1.0
   unit: null
-  item: unit Lemon
+  item: Lemon
 - qty: 0.5
   unit: tbsp
   item: Italian Seasoning
@@ -42,16 +41,16 @@ ingredients:
   item: Garlic Powder
 - qty: 1.0
   unit: null
-  item: unit Green Olives
+  item: Green Olives
 - qty: null
-  unit: tsp
-  item: (tsp) Salt
+  unit: null
+  item: Salt
 - qty: 3.0
   unit: tsp
-  item: (tsp) Olive Oil
+  item: Olive Oil
 - qty: null
-  unit: tsp
-  item: (tsp) Black Pepper
+  unit: null
+  item: Black Pepper
 steps:
 - text: Bring a medium pot of salted water to a boil. Wash and dry produce. Trim zucchini, then grate
     on the largest holes of a box grater. Zest and quarter lemon. Roughly chop olives. Roughly chop parsley.

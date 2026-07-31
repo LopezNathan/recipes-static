@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import { formatMinutes } from '../lib/time';
 
 const TOP_TAG_COUNT = 10;
 
@@ -23,30 +24,25 @@ function totalTime(t: { prep: number; cook: number }) {
 }
 ---
 
-<Base title="Recipes" description="A static recipe collection.">
-  <h1>Recipes</h1>
-  <p class="muted">{recipes.length} recipes.</p>
+<Base title="Recipes" description="A static recipe collection." wide>
+  <div class="page-title">
+    <h1>Recipes</h1>
+    <span class="muted">{recipes.length} recipes</span>
+  </div>
 
-  <input
-    type="search"
-    id="recipeSearch"
-    class="search-input"
-    placeholder="Search recipes…"
-    aria-label="Search recipes"
-  />
-
-  <div class="tags" id="tagFilter">
-    <button type="button" class="tag active" data-tag="" aria-pressed="true">all</button>
+  <div class="filter-row">
+    <input
+      type="search"
+      id="recipeSearch"
+      class="search-input search-input--inline"
+      placeholder="Search…"
+      aria-label="Search recipes"
+    />
+    <div class="tags" id="tagFilter">
+      <button type="button" class="tag active" data-tag="" aria-pressed="true">all</button>
     {
       topTags.map((tag) => (
         <button type="button" class="tag" data-tag={tag} aria-pressed="false">
-          {tag}
-        </button>
-      ))
-    }
-    {
-      restTags.map((tag) => (
-        <button type="button" class="tag tag-extra" data-tag={tag} aria-pressed="false" hidden>
           {tag}
         </button>
       ))
@@ -64,6 +60,20 @@ function totalTime(t: { prep: number; cook: number }) {
         </button>
       )
     }
+    </div>
+    {
+      restTags.length > 0 && (
+        <div class="tags tag-extra-group" id="extraTags" hidden>
+          {
+            restTags.map((tag) => (
+              <button type="button" class="tag" data-tag={tag} aria-pressed="false">
+                {tag}
+              </button>
+            ))
+          }
+        </div>
+      )
+    }
   </div>
 
   <div class="grid" id="recipeGrid">
@@ -72,7 +82,7 @@ function totalTime(t: { prep: number; cook: number }) {
         <a class="card" href={`/recipes/${r.id}/`} data-tags={r.data.tags.join(' ')}>
           <h3>{r.data.title}</h3>
           <div class="meta">
-            {r.data.servings} servings · {totalTime(r.data.time)} min
+            {r.data.servings} servings · {formatMinutes(totalTime(r.data.time))}
             {r.data.rating ? ` · ${'★'.repeat(r.data.rating)}` : ''}
           </div>
         </a>
@@ -84,8 +94,9 @@ function totalTime(t: { prep: number; cook: number }) {
 
   <script>
     const search = document.getElementById('recipeSearch') as HTMLInputElement | null;
-    const filter = document.getElementById('tagFilter');
+    const filterRow = document.querySelector('.filter-row');
     const moreToggle = document.getElementById('moreTagsToggle');
+    const extraTags = document.getElementById('extraTags');
     const grid = document.getElementById('recipeGrid');
     const noResults = document.getElementById('noResults');
     let activeTag = '';
@@ -105,11 +116,11 @@ function totalTime(t: { prep: number; cook: number }) {
       if (noResults) noResults.hidden = visible > 0;
     }
 
-    filter?.addEventListener('click', (e) => {
+    filterRow?.addEventListener('click', (e) => {
       const btn = (e.target as HTMLElement).closest('button.tag');
       if (!btn) return;
       activeTag = (btn as HTMLElement).dataset.tag ?? '';
-      filter.querySelectorAll('button.tag').forEach((b) => {
+      filterRow.querySelectorAll('button.tag').forEach((b) => {
         const on = b === btn;
         b.classList.toggle('active', on);
         b.setAttribute('aria-pressed', String(on));
@@ -122,9 +133,7 @@ function totalTime(t: { prep: number; cook: number }) {
       moreToggle.setAttribute('aria-expanded', String(!expanded));
       const count = moreToggle.dataset.count ?? '0';
       moreToggle.textContent = expanded ? `+${count} more` : 'Show fewer tags';
-      filter?.querySelectorAll<HTMLElement>('.tag-extra').forEach((el) => {
-        el.hidden = expanded;
-      });
+      if (extraTags) extraTags.hidden = expanded;
     });
 
     search?.addEventListener('input', applyFilters);

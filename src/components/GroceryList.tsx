@@ -27,6 +27,7 @@ interface Selection {
 type State = Record<string, Selection>;
 
 const STORAGE_KEY = 'grocery-selection-v1';
+const CHECKED_STORAGE_KEY = 'grocery-checked-v1';
 
 function loadState(): State {
   if (typeof window === 'undefined') return {};
@@ -37,13 +38,25 @@ function loadState(): State {
   }
 }
 
+function loadChecked(): Set<string> {
+  if (typeof window === 'undefined') return new Set();
+  try {
+    const raw = JSON.parse(window.localStorage.getItem(CHECKED_STORAGE_KEY) ?? '[]') as string[];
+    return new Set(raw);
+  } catch {
+    return new Set();
+  }
+}
+
 export default function GroceryList({ recipes }: Props) {
   const [state, setState] = useState<State>({});
   const [query, setQuery] = useState('');
+  const [checkedItems, setCheckedItems] = useState<Set<string>>(new Set());
 
   // hydrate from localStorage after mount (avoids SSR mismatch)
   useEffect(() => {
     setState(loadState());
+    setCheckedItems(loadChecked());
   }, []);
 
   useEffect(() => {
@@ -51,6 +64,21 @@ export default function GroceryList({ recipes }: Props) {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
   }, [state]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(CHECKED_STORAGE_KEY, JSON.stringify([...checkedItems]));
+    }
+  }, [checkedItems]);
+
+  function toggleChecked(key: string) {
+    setCheckedItems((s) => {
+      const next = new Set(s);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  }
 
   function sel(slug: string, base: number): Selection {
     return state[slug] ?? { selected: false, servings: base };
@@ -117,6 +145,7 @@ export default function GroceryList({ recipes }: Props) {
                 <span class="stepper">
                   <button
                     type="button"
+                    class="btn-sm"
                     aria-label="fewer servings"
                     disabled={s.servings <= 1}
                     onClick={() => setServings(r.slug, r.baseServings, Math.max(1, s.servings - 1))}
@@ -126,6 +155,7 @@ export default function GroceryList({ recipes }: Props) {
                   <output>{s.servings}</output>
                   <button
                     type="button"
+                    class="btn-sm"
                     aria-label="more servings"
                     disabled={s.servings >= 12}
                     onClick={() => setServings(r.slug, r.baseServings, Math.min(12, s.servings + 1))}
@@ -140,28 +170,52 @@ export default function GroceryList({ recipes }: Props) {
       </div>
 
       <div class="grocery-result">
-        <h2>Grocery list</h2>
+        <div class="grocery-result-header">
+          <h2>
+            Grocery list{' '}
+            {merged.length > 0 && (
+              <span class="progress">
+                {merged.filter((m) => checkedItems.has(m.key)).length}/{merged.length}
+              </span>
+            )}
+          </h2>
+          {anySelected && (
+            <div class="grocery-actions">
+              <button
+                type="button"
+                class="btn-sm"
+                onClick={() => setState((s) => {
+                  const next: State = {};
+                  for (const k of Object.keys(s)) next[k] = { ...s[k], selected: false };
+                  return next;
+                })}
+              >
+                Clear selection
+              </button>
+              {checkedItems.size > 0 && (
+                <button type="button" class="btn-sm" onClick={() => setCheckedItems(new Set())}>
+                  Clear checked
+                </button>
+              )}
+            </div>
+          )}
+        </div>
         {!anySelected && <p class="muted">Select recipes to build your list.</p>}
         {anySelected && merged.length === 0 && <p class="muted">No quantifiable ingredients.</p>}
-        <ul class="ingredients">
+        <ul class="ingredients check-list">
           {merged.map((m) => (
-            <li key={m.key}>{m.display}</li>
+            <li key={m.key} class={`ing-item${checkedItems.has(m.key) ? ' checked' : ''}`}>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={checkedItems.has(m.key)}
+                  onChange={() => toggleChecked(m.key)}
+                />
+                <span class="ing-text">{m.display}</span>
+              </label>
+            </li>
           ))}
         </ul>
-        {anySelected && (
-          <p>
-            <button
-              type="button"
-              onClick={() => setState((s) => {
-                const next: State = {};
-                for (const k of Object.keys(s)) next[k] = { ...s[k], selected: false };
-                return next;
-              })}
-            >
-              Clear selection
-            </button>
-          </p>
-        )}
       </div>
     </div>
   );

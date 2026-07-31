@@ -38,8 +38,8 @@ ingredients:
   unit: lb
   item: ground chicken
 - qty: 10.0
-  unit: null
-  item: to 12 ounces ramen or udon noodles, preferably fresh
+  unit: oz
+  item: ramen or udon noodles, preferably fresh
 - qty: 3.0
   unit: tbsp
   item: finely chopped chives

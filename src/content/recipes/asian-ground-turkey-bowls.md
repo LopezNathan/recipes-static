@@ -20,9 +20,9 @@ ingredients:
 - qty: 0.25
   unit: cup
   item: reduced-sodium chicken broth
-- qty: 2.0
-  unit: null
-  item: -1/2 tablespoons reduced-sodium soy sauce
+- qty: 2.5
+  unit: tbsp
+  item: reduced-sodium soy sauce
 - qty: 2.0
   unit: tbsp
   item: oyster sauce
@@ -52,10 +52,10 @@ ingredients:
   item: coconut oil measured when solid
 - qty: 3.0
   unit: null
-  item: –4 cloves garlic
-- qty: 1.0
+  item: cloves garlic
+- qty: null
   unit: null
-  item: -inch piece ginger
+  item: 1-inch piece ginger
 - qty: 0.5
   unit: cup
   item: finely diced red onion
@@ -76,13 +76,13 @@ ingredients:
   item: cooked basmati rice see note 1
 - qty: 0.25
   unit: cup
-  item: (54g) mayo (I love Best Foods/Hellman’s)
+  item: mayo (I love Best Foods/Hellman’s)
 - qty: 1.0
   unit: null
-  item: –2 large limes (1/4 teaspoon zest and 2 tablespoons juice)
-- qty: 1.0
-  unit: null
-  item: -1/2 teaspoons Sriracha sauce
+  item: large limes (1/4 teaspoon zest and 2 tablespoons juice)
+- qty: 1.5
+  unit: tsp
+  item: Sriracha sauce
 - qty: 0.5
   unit: tsp
   item: granulated sugar

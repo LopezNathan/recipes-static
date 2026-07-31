@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import { formatMinutes } from '../../lib/time';
 
 export async function getStaticPaths() {
   const recipes = await getCollection('recipes');
@@ -19,7 +20,7 @@ export async function getStaticPaths() {
 const { tag, recipes } = Astro.props;
 ---
 
-<Base title={`#${tag}`} description={`Recipes tagged ${tag}`}>
+<Base title={`#${tag}`} description={`Recipes tagged ${tag}`} wide>
   <p class="muted"><a href="/">← all recipes</a></p>
   <h1>#{tag}</h1>
   <p class="muted">{recipes.length} recipe{recipes.length === 1 ? '' : 's'}</p>
@@ -30,7 +31,7 @@ const { tag, recipes } = Astro.props;
         <a class="card" href={`/recipes/${r.id}/`}>
           <h3>{r.data.title}</h3>
           <div class="meta">
-            {r.data.servings} servings · {r.data.time.prep + r.data.time.cook} min
+            {r.data.servings} servings · {formatMinutes(r.data.time.prep + r.data.time.cook)}
           </div>
         </a>
       ))

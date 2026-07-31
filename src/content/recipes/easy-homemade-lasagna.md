@@ -13,9 +13,6 @@ tags:
 - pasta
 source: https://www.spendwithpennies.com/easy-homemade-lasagna/
 ingredients:
-- qty: 1.0
-  unit: null
-  item: x 2x 3x
 - qty: 12.0
   unit: null
   item: lasagna noodles uncooked
@@ -25,9 +22,9 @@ ingredients:
 - qty: 0.5
   unit: cup
   item: shredded Parmesan cheese shredded and divided
-- qty: null
-  unit: null
-  item: ¾ teaspoon salt more
+- qty: 0.75
+  unit: tsp
+  item: salt, more to taste
 - qty: 0.5
   unit: lb
   item: lean ground beef

@@ -11,7 +11,6 @@ tags:
 - seafood
 - shrimp
 - spicy
-- tomato
 source: https://www.theoriginaldish.com/2019/12/12/spicy-tomato-seafood-pasta/
 ingredients:
 - qty: null
@@ -38,9 +37,9 @@ ingredients:
 - qty: 0.5
   unit: cup
   item: white wine
-- qty: 1.0
-  unit: null
-  item: ½ cups canned crushed tomatoes
+- qty: 1.5
+  unit: cup
+  item: canned crushed tomatoes
 - qty: 0.75
   unit: lb
   item: linguine pasta

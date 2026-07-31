@@ -11,6 +11,7 @@
   --success-weak: rgba(78, 195, 138, 0.08);
   --radius: 10px;
   --maxw: 60rem;
+  --maxw-wide: 78rem;
   color-scheme: dark;
 }
 
@@ -41,6 +42,9 @@ a:hover {
   max-width: var(--maxw);
   margin: 0 auto;
   padding: 1.5rem 1.25rem 4rem;
+}
+.wrap-wide {
+  max-width: var(--maxw-wide);
 }
 
 .site-header {
@@ -79,11 +83,20 @@ h2 {
 .muted {
   color: var(--muted);
 }
+.page-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.page-title h1 {
+  margin: 0.2rem 0;
+}
 
 /* recipe grid */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
   gap: 1rem;
 }
 .card {
@@ -119,6 +132,49 @@ h2 {
   padding: 0.55rem 0.8rem;
   margin: 0.75rem 0;
 }
+
+/* homepage: search box + tag row grouped as one filter bar */
+.filter-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem 0.9rem;
+  margin: 1rem 0;
+  padding: 0.75rem 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.search-input--inline {
+  flex: 1 1 14rem;
+  max-width: 18rem;
+  margin: 0;
+  padding-left: 2.25rem;
+  background-color: var(--surface-2);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%239aa1ad' stroke-width='1.5'%3E%3Ccircle cx='7' cy='7' r='5'/%3E%3Cpath d='M11 11l3.5 3.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0.75rem center;
+  background-size: 15px 15px;
+}
+.filter-row .tags {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding-left: 0.9rem;
+  border-left: 1px solid var(--border);
+}
+@media (max-width: 30rem) {
+  .filter-row {
+    align-items: stretch;
+  }
+  .search-input--inline {
+    max-width: none;
+  }
+  .filter-row .tags {
+    padding-left: 0;
+    border-left: none;
+  }
+}
 .search-input:focus {
   outline: none;
   border-color: var(--accent);
@@ -131,19 +187,32 @@ h2 {
 .tags {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.4rem;
   margin: 0.75rem 0;
 }
 .tag,
 .chip-toggle {
   display: inline-block;
-  padding: 0.15rem 0.6rem;
+  padding: 0.3rem 0.7rem;
   border-radius: 999px;
   background: var(--surface-2);
   border: 1px solid var(--border);
   color: var(--muted);
   font-size: 0.8rem;
   cursor: pointer;
+}
+.tag[hidden] {
+  display: none;
+}
+.tag-extra-group {
+  width: 100%;
+  margin: 0.5rem 0 0;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+.tag-extra-group[hidden] {
+  display: none;
 }
 .tag:hover,
 .chip-toggle:hover {
@@ -176,6 +245,19 @@ ul.ingredients {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+/* cook mode: ingredients | steps side by side on desktop */
+.cook-grid {
+  display: grid;
+  grid-template-columns: minmax(16rem, 22rem) 1fr;
+  align-items: start;
+  gap: 2.5rem;
+}
+@media (max-width: 48rem) {
+  .cook-grid {
+    grid-template-columns: 1fr;
+  }
 }
 ul.ingredients li {
   padding: 0.4rem 0;
@@ -211,6 +293,10 @@ button:hover,
 button:disabled {
   opacity: 0.5;
   cursor: default;
+}
+.btn-sm {
+  padding: 0.2rem 0.55rem;
+  font-size: 0.85rem;
 }
 .stepper {
   display: inline-flex;
@@ -266,8 +352,22 @@ label.check:hover {
     position: static;
   }
 }
+.grocery-result-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+.grocery-result-header h2 {
+  margin: 1.75rem 0 0.6rem;
+}
+.grocery-actions {
+  display: flex;
+  gap: 0.5rem;
+}
 .recipe-picker-list {
-  max-height: 24rem;
+  max-height: calc(100vh - 14rem);
   overflow-y: auto;
   padding-right: 0.25rem;
 }
@@ -337,7 +437,7 @@ ol.step-cards {
   padding: 0;
   margin: 0;
   display: grid;
-  gap: 1rem;
+  gap: 0.15rem;
 }
 .step-card {
   display: grid;
@@ -348,7 +448,7 @@ ol.step-cards {
   border: 1px solid var(--border);
   border-left: 3px solid var(--border);
   border-radius: var(--radius);
-  padding: 1rem 1.1rem;
+  padding: 0.75rem 1.1rem;
   cursor: pointer;
   transition: border-color 0.2s, background 0.2s, opacity 0.2s;
 }

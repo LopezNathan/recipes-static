@@ -29,8 +29,8 @@ ingredients:
   unit: null
   item: cloves garlic, sliced
 - qty: 4.0
-  unit: null
-  item: c. low-sodium chicken broth
+  unit: cup
+  item: low-sodium chicken broth
 - qty: 1.0
   unit: tsp
   item: cumin seeds
@@ -48,7 +48,7 @@ ingredients:
   item: dried guajillo chiles, stem and seeds removed
 - qty: 3.0
   unit: null
-  item: (15-oz.) cans hominy, drained, rinsed
+  item: cans hominy, drained, rinsed
 - qty: null
   unit: null
   item: Thinly sliced radishes, thinly sliced green cabbage, and chopped fresh cilantro, for serving

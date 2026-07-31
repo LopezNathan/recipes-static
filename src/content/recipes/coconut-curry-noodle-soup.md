@@ -38,37 +38,37 @@ ingredients:
   item: inches fresh ginger, finely grated
 - qty: 4.0
   unit: null
-  item: –5 garlic cloves, grated
+  item: garlic cloves, grated
 - qty: 2.0
   unit: null
   item: green onions, whites and greens separated
-- qty: null
-  unit: null
-  item: 2 tbsp Thai red curry paste, or
+- qty: 2.0
+  unit: tbsp
+  item: Thai red curry paste, or
 - qty: 2.0
   unit: tbsp
   item: tomato paste
-- qty: null
-  unit: null
-  item: 2 tsp curry powder
-- qty: null
-  unit: null
-  item: 2 tsp ground cumin
-- qty: null
-  unit: null
-  item: 1 tsp ground coriander
-- qty: null
-  unit: null
-  item: ½ tsp ground turmeric
-- qty: null
-  unit: null
-  item: 1–2 tsp fish sauce, plus more
+- qty: 2.0
+  unit: tsp
+  item: curry powder
+- qty: 2.0
+  unit: tsp
+  item: ground cumin
+- qty: 1.0
+  unit: tsp
+  item: ground coriander
+- qty: 0.5
+  unit: tsp
+  item: ground turmeric
+- qty: 1.0
+  unit: tsp
+  item: fish sauce, plus more
 - qty: 1.0
   unit: tsp
   item: soy sauce
-- qty: null
-  unit: null
-  item: 1–2 tsp brown sugar or honey
+- qty: 1.0
+  unit: tsp
+  item: brown sugar or honey
 - qty: 2.0
   unit: null
   item: cans (13.5 oz each) full-fat coconut milk
@@ -86,7 +86,7 @@ ingredients:
   item: Drizzle of toasted sesame oil
 - qty: 2.0
   unit: null
-  item: –3 baby bok choy, halved
+  item: baby bok choy, halved
 - qty: null
   unit: null
   item: Thai or Fresno chili slices, for garnish

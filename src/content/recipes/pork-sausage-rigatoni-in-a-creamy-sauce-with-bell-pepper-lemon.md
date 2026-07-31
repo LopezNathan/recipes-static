@@ -8,7 +8,6 @@ tags:
 - creamy
 - dinner
 - italian
-- lemon
 - pasta
 - sausage
 - weeknight

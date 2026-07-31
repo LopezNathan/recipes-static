@@ -8,7 +8,6 @@ tags:
 - american
 - baked
 - dinner
-- garlic-butter
 - healthy
 - quick
 - salmon
@@ -17,7 +16,7 @@ source: https://www.savorynothings.com/garlic-butter-baked-salmon/
 ingredients:
 - qty: 1.0
   unit: null
-  item: (2-pound) whole salmon fillet skin-on preferred
+  item: whole salmon fillet skin-on preferred
 - qty: 3.0
   unit: tbsp
   item: melted butter OR olive oil

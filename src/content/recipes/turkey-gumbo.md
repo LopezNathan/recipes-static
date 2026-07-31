@@ -14,9 +14,6 @@ source: https://www.homesicktexan.com/turkey-gumbo-ham-recipe/
 ingredients:
 - qty: null
   unit: null
-  item: 'Ingredients for the turkey broth: Ingredients for the turkey broth:'
-- qty: null
-  unit: null
   item: Turkey bones
 - qty: 2.0
   unit: null
@@ -36,9 +33,6 @@ ingredients:
 - qty: 4.0
   unit: null
   item: whole cloves
-- qty: null
-  unit: null
-  item: 'Ingredients for the gumbo: Ingredients for the gumbo:'
 - qty: 0.75
   unit: cup
   item: all-purpose flour
@@ -67,11 +61,11 @@ ingredients:
   unit: cup
   item: turkey broth or chicken broth (if not making your own broth)
 - qty: 2.0
-  unit: null
-  item: -3 cups chopped cooked turkey
+  unit: cup
+  item: chopped cooked turkey
 - qty: 2.0
-  unit: null
-  item: -3 cups diced ham or sliced smoked sausage, such as kielbasa or andouille
+  unit: cup
+  item: diced ham or sliced smoked sausage, such as kielbasa or andouille
 - qty: 0.25
   unit: cup
   item: chopped parsley

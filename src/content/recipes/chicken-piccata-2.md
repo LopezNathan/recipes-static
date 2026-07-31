@@ -8,7 +8,6 @@ tags:
 - chicken
 - dinner
 - italian
-- lemon
 - quick
 source: https://www.delish.com/cooking/recipe-ideas/a37992192/easy-chicken-piccata-recipe/?utm_source=google&utm_medium=cpc&utm_campaign=mgu_ga_del_m_bm_prog_org_us_a37992192&gad_source=1&gad_campaignid=20628122326&gbraid=0AAAAACq-IPxY3VSymIA2G7pbPyX1D-TbW&gclid=Cj0KCQiAprLLBhCMARIsAEDhdPdYcdCKnsexAH6BjVfFFOjZ-tRYId-tp-wA9BhOJfOOcLjgwcgWIdAaAhnxEALw_wcB
 ingredients:
@@ -23,7 +22,7 @@ ingredients:
   item: Freshly ground black pepper
 - qty: 0.25
   unit: cup
-  item: (30 g.) all-purpose flour
+  item: all-purpose flour
 - qty: 0.5
   unit: cup
   item: extra-virgin olive oil, divided
@@ -41,7 +40,7 @@ ingredients:
   item: cold unsalted butter, cut into pieces
 - qty: 1.0
   unit: null
-  item: (3.5-oz.) jar capers, rinsed
+  item: jar capers, rinsed
 - qty: null
   unit: null
   item: Lemon wedges, for serving

@@ -15,9 +15,9 @@ ingredients:
 - qty: 1.0
   unit: tbsp
   item: vegetable oil
-- qty: 3.0
+- qty: 4.0
   unit: tbsp
-  item: butter plus 1 tablespoon for tossing the pasta
+  item: butter, 1 tbsp reserved for tossing the pasta
 - qty: 0.5
   unit: cup
   item: chopped onion
@@ -49,8 +49,8 @@ ingredients:
   unit: cup
   item: canned imported Italian plum tomatoes, cut up, with their juice
 - qty: 1.25
-  unit: null
-  item: to 1 1/2 pounds pasta
+  unit: lb
+  item: pasta
 - qty: null
   unit: null
   item: Freshly grated Parmigiano-Reggiano at the table

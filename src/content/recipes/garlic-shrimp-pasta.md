@@ -16,16 +16,16 @@ source: https://littlesunnykitchen.com/garlic-shrimp-pasta/
 ingredients:
 - qty: 8.0
   unit: oz
-  item: (225 grams) linguine pasta
+  item: linguine pasta
 - qty: 1.0
   unit: tbsp
   item: olive oil
-- qty: 1.0
-  unit: null
-  item: ½ tablespoons butter divided
+- qty: 1.5
+  unit: tbsp
+  item: butter divided
 - qty: 1.0
   unit: lb
-  item: (450 grams) raw shrimp buy frozen, peeled, and deveined shrimp
+  item: raw shrimp buy frozen, peeled, and deveined shrimp
 - qty: 0.5
   unit: tsp
   item: salt
@@ -40,10 +40,10 @@ ingredients:
   item: clove garlic minced
 - qty: 0.5
   unit: cup
-  item: (120 ml) heavy cream (double cream in the UK)
+  item: heavy cream (double cream in the UK)
 - qty: 0.5
   unit: cup
-  item: (40 grams) parmesan grated
+  item: parmesan grated
 - qty: 0.25
   unit: cup
   item: chopped fresh parsley chopped

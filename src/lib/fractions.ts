@@ -32,12 +32,11 @@ export function scaleQty(qty: number, servings: number, baseServings: number): n
 }
 
 /**
- * Render a scaled quantity per the rule above.
- * `null` qty ("to taste") is returned as null so the caller can omit it.
+ * Render a non-null quantity per the rule above: >= 10 rounds to an
+ * integer, otherwise the fractional part snaps to a unicode glyph within
+ * tolerance, falling back to a short decimal.
  */
-export function formatQty(qty: number | null): string | null {
-  if (qty === null) return null;
-  if (!isFinite(qty)) return null;
+export function formatFractional(qty: number): string {
   if (qty >= 10) return String(Math.round(qty));
 
   const whole = Math.floor(qty);
@@ -69,4 +68,14 @@ export function formatQty(qty: number | null): string | null {
 
   // No fraction within tolerance: short decimal.
   return String(Number(qty.toFixed(2)));
+}
+
+/**
+ * Render a scaled quantity per the rule above.
+ * `null` qty ("to taste") is returned as null so the caller can omit it.
+ */
+export function formatQty(qty: number | null): string | null {
+  if (qty === null) return null;
+  if (!isFinite(qty)) return null;
+  return formatFractional(qty);
 }

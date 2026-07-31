@@ -14,9 +14,6 @@ tags:
 - italian
 source: https://asimplepalate.com/blog/chicken-parmigiana/
 ingredients:
-- qty: null
-  unit: null
-  item: 'For the Chicken: For the Chicken:'
 - qty: 3.0
   unit: null
   item: chicken breasts, sliced in half length-wise to create 6 cutlets
@@ -29,9 +26,6 @@ ingredients:
 - qty: 0.3333
   unit: cup
   item: olive oil
-- qty: null
-  unit: null
-  item: Breadcrumbs
 - qty: 1.5
   unit: cup
   item: breadcrumbs
@@ -40,16 +34,13 @@ ingredients:
   item: parmesan cheese, shredded
 - qty: 0.5
   unit: tsp
-  item: (each) salt & pepper
+  item: salt & pepper, each
 - qty: 2.0
   unit: tsp
   item: Italian herb blend (thyme, oregano, basil, rosemary)
 - qty: 1.0
   unit: tsp
   item: garlic powder
-- qty: null
-  unit: null
-  item: 'For the Topping: For the Topping:'
 - qty: 6.0
   unit: null
   item: slices Mozzarella

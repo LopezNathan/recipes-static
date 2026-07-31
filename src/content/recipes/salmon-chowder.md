@@ -41,9 +41,9 @@ ingredients:
 - qty: 2.0
   unit: null
   item: large russet potatoes, peeled and cut into 1½-inch pieces
-- qty: 1.0
-  unit: null
-  item: ½ teaspoons fine sea salt
+- qty: 1.5
+  unit: tsp
+  item: fine sea salt
 - qty: 0.5
   unit: tsp
   item: freshly cracked black pepper, plus more for serving
@@ -56,9 +56,9 @@ ingredients:
 - qty: 2.0
   unit: cup
   item: heavy cream
-- qty: 1.0
-  unit: null
-  item: ½ pounds salmon, preferably wild, skin discarded and cut into 1½-inch pieces
+- qty: 1.5
+  unit: lb
+  item: salmon, preferably wild, skin discarded and cut into 1½-inch pieces
 steps:
 - text: In a large, heavy stockpot, melt the butter over medium heat. Add the bacon and cook, stirring
     often, until the bacon begins to crisp, about 8 minutes. Using a slotted spoon, remove the bacon from

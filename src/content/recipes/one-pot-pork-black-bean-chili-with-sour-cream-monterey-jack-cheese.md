@@ -15,10 +15,10 @@ source: https://www.hellofresh.com/recipes/one-pot-pork-and-black-bean-chili-618
 ingredients:
 - qty: 1.0
   unit: null
-  item: unit Yellow Onion
+  item: Yellow Onion
 - qty: 1.0
   unit: null
-  item: unit Jalapeño
+  item: Jalapeño
 - qty: 10.0
   unit: oz
   item: Ground Pork
@@ -39,7 +39,7 @@ ingredients:
   item: Black Beans
 - qty: 1.0
   unit: null
-  item: unit Beef Stock Concentrate
+  item: Beef Stock Concentrate
 - qty: 2.0
   unit: tbsp
   item: Sour Cream

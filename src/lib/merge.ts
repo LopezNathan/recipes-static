@@ -109,7 +109,18 @@ export function mergeIngredients(ingredients: RawIngredient[]): MergedItem[] {
   return result;
 }
 
-/** Human-friendly item name: drop the prep note after the first comma. */
+/**
+ * Human-friendly item name: drop the prep note after the first comma.
+ * Ignores commas inside parentheses so "(thyme, oregano, rosemary)" survives
+ * intact instead of being truncated mid-list.
+ */
 function cleanName(item: string): string {
-  return (item.split(',')[0] ?? item).trim();
+  let depth = 0;
+  for (let i = 0; i < item.length; i++) {
+    const c = item[i];
+    if (c === '(') depth++;
+    else if (c === ')') depth = Math.max(0, depth - 1);
+    else if (c === ',' && depth === 0) return item.slice(0, i).trim();
+  }
+  return item.trim();
 }

@@ -12,13 +12,9 @@ tags:
 - middle-eastern
 - one-pan
 - spicy
-- tomato
 - vegetarian
 source: https://www.themediterraneandish.com/shakshuka-recipe/
 ingredients:
-- qty: 1.0
-  unit: null
-  item: X 2X 3X
 - qty: 3.0
   unit: tbsp
   item: extra virgin olive oil

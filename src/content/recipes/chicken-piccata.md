@@ -8,7 +8,6 @@ tags:
 - chicken
 - dinner
 - italian
-- lemon
 - quick
 source: https://themodernproper.com/chicken-piccata
 ingredients:
@@ -48,9 +47,9 @@ ingredients:
 - qty: 0.5
   unit: tsp
   item: freshly cracked black pepper
-- qty: 1.0
-  unit: null
-  item: ¾ teaspoons sea salt
+- qty: 1.75
+  unit: tsp
+  item: sea salt
 - qty: 1.0
   unit: cup
   item: flour
@@ -66,12 +65,12 @@ ingredients:
 - qty: 1.0
   unit: tbsp
   item: minced garlic (from 4-6 cloves)
+- qty: 1.5
+  unit: cup
+  item: chicken stock
 - qty: 1.0
-  unit: null
-  item: ½ cups chicken stock
-- qty: null
-  unit: null
-  item: 1 teaspoons lemon zest (from 1 lemon), plus more
+  unit: tsp
+  item: lemon zest (from 1 lemon), plus more
 - qty: 1.0
   unit: tbsp
   item: fresh lemon juice

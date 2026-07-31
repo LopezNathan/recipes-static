@@ -7,6 +7,8 @@
 //
 // Quantities are NEVER converted across dimensions.
 
+import { formatFractional } from './fractions';
+
 export type Unit = 'g' | 'kg' | 'oz' | 'lb' | 'ml' | 'l' | 'tsp' | 'tbsp' | 'cup' | null;
 export type Dimension = 'mass' | 'volume' | 'count';
 
@@ -62,7 +64,18 @@ export function trimNumber(n: number, maxDecimals = 2): string {
 /**
  * Format a base-unit quantity using the dimension's display ladder:
  * pick the largest unit whose value is >= 1, else the smallest unit.
+ *
+ * Volume renders with unicode fractions (⅓ cup, not 0.33 cup — nobody owns
+ * a 0.33-cup measuring cup). Mass and count stay decimal: kitchen scales
+ * read in decimal grams/kilos, and counts are already whole numbers.
  */
+function formatMass(value: number, unit: string): string {
+  // Grams rarely land on a round number once converted from oz/lb — nobody
+  // measures to the hundredth of a gram, so round to a whole gram. Kilos
+  // stay at 2 decimals (1.2 kg is meaningful on a kitchen scale).
+  return unit === 'g' ? trimNumber(value, 0) : trimNumber(value, 2);
+}
+
 export function formatFromBase(baseQty: number, dimension: Dimension): string {
   if (dimension === 'count') {
     return trimNumber(baseQty);
@@ -70,9 +83,14 @@ export function formatFromBase(baseQty: number, dimension: Dimension): string {
   const ladder = dimension === 'mass' ? MASS_LADDER : VOLUME_LADDER;
   for (const [name, factor] of ladder) {
     const value = baseQty / factor;
-    if (value >= 1) return `${trimNumber(value)} ${name}`;
+    if (value >= 1) {
+      const display = dimension === 'volume' ? formatFractional(value) : formatMass(value, name);
+      return `${display} ${name}`;
+    }
   }
   // Smaller than the smallest ladder unit: use that smallest unit anyway.
   const [name, factor] = ladder[ladder.length - 1];
-  return `${trimNumber(baseQty / factor)} ${name}`;
+  const value = baseQty / factor;
+  const display = dimension === 'volume' ? formatFractional(value) : formatMass(value, name);
+  return `${display} ${name}`;
 }

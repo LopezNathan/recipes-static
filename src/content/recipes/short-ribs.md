@@ -34,8 +34,8 @@ ingredients:
   unit: null
   item: bottle of red wine (I used Merlot)
 - qty: 2.0
-  unit: null
-  item: -4 cups of beef broth
+  unit: cup
+  item: beef broth
 - qty: 1.0
   unit: null
   item: head garlic, halved
