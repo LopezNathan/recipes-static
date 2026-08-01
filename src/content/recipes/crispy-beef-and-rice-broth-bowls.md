@@ -11,7 +11,8 @@ tags:
 - dinner
 - quick
 - spicy
-source: null
+source: https://masonfit.com/crispy-beef-broth-bowls/
+image: https://masonfit.com/wp-content/uploads/2026/03/crispy-beef-and-brothy-rice.jpg
 ingredients:
 - qty: 2.0
   unit: lb

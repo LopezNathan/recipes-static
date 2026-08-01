@@ -1,6 +1,5 @@
 ---
-title: Herbed Chicken & Creamy Lemon Orzo Balances protein and fiber while limiting fat, sodium, and added
-  sugar
+title: Herbed Chicken & Creamy Lemon Orzo
 servings: 2
 time:
   prep: 40
