@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 const { tag, recipes } = Astro.props;
 ---
 
-<Base title={`#${tag}`} description={`Recipes tagged ${tag}`} wide>
+<Base title={`#${tag}`} description={`Recipes tagged ${tag}`}>
   <p class="muted"><a href="/">← all recipes</a></p>
   <h1>#{tag}</h1>
   <p class="muted">{recipes.length} recipe{recipes.length === 1 ? '' : 's'}</p>

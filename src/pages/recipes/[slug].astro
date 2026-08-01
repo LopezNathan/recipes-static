@@ -18,7 +18,7 @@ const { Content } = await render(recipe);
 const total = data.time.prep + data.time.cook;
 ---
 
-<Base title={data.title} description={`${data.title} — ${data.servings} servings`} wide>
+<Base title={data.title} description={`${data.title} — ${data.servings} servings`}>
   <article data-pagefind-body>
     <h1 data-pagefind-meta="title">{data.title}</h1>
 
@@ -55,5 +55,15 @@ const total = data.time.prep + data.time.cook;
       ingredients={data.ingredients}
       steps={data.steps}
     />
+
+    <p class="muted recipe-edit-link">
+      <a
+        href={`https://github.com/LopezNathan/recipes-static/edit/static-site/src/content/recipes/${recipe.id}.md`}
+        rel="noopener"
+        target="_blank"
+      >
+        Edit this recipe on GitHub
+      </a>
+    </p>
   </article>
 </Base>

@@ -10,8 +10,7 @@
   --success: #4ec38a;
   --success-weak: rgba(78, 195, 138, 0.08);
   --radius: 10px;
-  --maxw: 60rem;
-  --maxw-wide: 78rem;
+  --maxw: 78rem;
   color-scheme: dark;
 }
 
@@ -42,9 +41,6 @@ a:hover {
   max-width: var(--maxw);
   margin: 0 auto;
   padding: 1.5rem 1.25rem 4rem;
-}
-.wrap-wide {
-  max-width: var(--maxw-wide);
 }
 
 .site-header {
@@ -100,7 +96,10 @@ h2 {
   gap: 1rem;
 }
 .card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 6rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -118,6 +117,24 @@ h2 {
 .card .meta {
   color: var(--muted);
   font-size: 0.85rem;
+}
+.card.has-image {
+  min-height: 10rem;
+  background-image:
+    linear-gradient(180deg, rgba(14, 16, 20, 0.25) 0%, rgba(14, 16, 20, 0.45) 45%, rgba(14, 16, 20, 0.92) 100%),
+    var(--card-image);
+  background-size: cover;
+  background-position: center;
+}
+.card.has-image h3 {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+.card.has-image .meta {
+  color: #d7dae0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+.card.has-placeholder {
+  background-image: linear-gradient(160deg, var(--surface-2) 0%, var(--accent-weak) 100%);
 }
 
 /* search input */
@@ -245,6 +262,12 @@ ul.ingredients {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+.recipe-edit-link {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
 }
 
 /* cook mode: ingredients | steps side by side on desktop */

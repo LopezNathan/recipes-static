@@ -4,9 +4,8 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
-  wide?: boolean;
 }
-const { title, description, wide = false } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
@@ -20,7 +19,7 @@ const { title, description, wide = false } = Astro.props;
   </head>
   <body>
     <header class="site-header">
-      <div class={wide ? 'wrap wrap-wide' : 'wrap'}>
+      <div class="wrap">
         <a href="/" class="brand">🍳 Recipes</a>
         <nav>
           <a href="/">Recipes</a>
@@ -29,7 +28,7 @@ const { title, description, wide = false } = Astro.props;
         </nav>
       </div>
     </header>
-    <main class={wide ? 'wrap wrap-wide' : 'wrap'}>
+    <main class="wrap">
       <slot />
     </main>
   </body>

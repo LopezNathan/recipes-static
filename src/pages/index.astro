@@ -24,7 +24,7 @@ function totalTime(t: { prep: number; cook: number }) {
 }
 ---
 
-<Base title="Recipes" description="A static recipe collection." wide>
+<Base title="Recipes" description="A static recipe collection.">
   <div class="page-title">
     <h1>Recipes</h1>
     <span class="muted">{recipes.length} recipes</span>
@@ -79,7 +79,12 @@ function totalTime(t: { prep: number; cook: number }) {
   <div class="grid" id="recipeGrid">
     {
       recipes.map((r) => (
-        <a class="card" href={`/recipes/${r.id}/`} data-tags={r.data.tags.join(' ')}>
+        <a
+          class:list={['card', r.data.image ? 'has-image' : 'has-placeholder']}
+          href={`/recipes/${r.id}/`}
+          data-tags={r.data.tags.join(' ')}
+          style={r.data.image ? `--card-image: url('${r.data.image}')` : undefined}
+        >
           <h3>{r.data.title}</h3>
           <div class="meta">
             {r.data.servings} servings · {formatMinutes(totalTime(r.data.time))}
