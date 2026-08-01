@@ -39,22 +39,27 @@ created: date
 
 Body below the frontmatter = free-form notes (markdown).
 
+`image` (when present) is shown as the homepage card's background photo, with
+a dark gradient behind the title/meta text. Recipes without one fall back to
+a plain gradient card — a real photo is preferred over leaving it unset.
+
 ## Reuse existing tags and keys before inventing new ones
 
 The grocery merge groups ingredients by `key` (or a derived key when absent),
 and the UI filters by `tag`. Consistency matters — prefer an existing value.
 
-**Existing `key` values:**
-butter, chicken, egg, flour, garlic, lemon, milk, olive-oil, onion, pasta,
-rice, sugar, tomatoes, water
+**Existing `key` values:** none of the current recipes set an explicit `key`
+— the merge derives one from each ingredient's `item` text (see
+`src/lib/merge.ts`). Only set `key` yourself if the derived grouping would be
+wrong (e.g. two differently-worded ingredients that should merge as one).
 
 **Existing `tag` values:**
 american, asian, baked, beef, bowls, braised, breakfast, british, brunch,
 cajun, casserole, chicken, comfort-food, creamy, curry, dinner, eggs,
 family-recipe, freezer-friendly, french, grilled, healthy, hearty, italian,
 make-ahead, marinade, mediterranean, mexican, middle-eastern, noodles,
-one-pan, one-pot, pasta, peruvian, pork, potato, quick, rice, roast,
-salmon, sauce, sausage, seafood, shrimp, side, slow-cooked, soup,
+one-pan, one-pot, pasta, peruvian, pork, potato, quick, rice,
+salmon, sauce, sausage, seafood, shrimp, slow-cooked, soup,
 special-occasion, spicy, thai, turkey, vegetarian, weeknight
 
 Tags are cuisine, meal-type, course, cooking method, dietary, effort/style,
@@ -74,7 +79,7 @@ node -e 'const fs=require("fs");const d="src/content/recipes";const k=new Set(),
 ```bash
 npm install
 npm run dev            # local dev server
-npm run build          # astro build + pagefind index (fails on bad frontmatter)
+npm run build          # astro build (fails on bad frontmatter)
 npm test               # vitest: grocery merge + fraction rules
 npx wrangler pages deploy dist   # deploy the built site to Cloudflare Pages
 ```

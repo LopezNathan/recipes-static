@@ -37,10 +37,29 @@ function mmss(total: number): string {
   return `${m}:${String(s).padStart(2, '0')}`;
 }
 
+function playAlarm(ctx: AudioContext) {
+  const now = ctx.currentTime;
+  for (const start of [0, 0.25, 0.5]) {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = 880;
+    gain.gain.setValueAtTime(0.0001, now + start);
+    gain.gain.exponentialRampToValueAtTime(0.3, now + start + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + start + 0.18);
+    osc.connect(gain).connect(ctx.destination);
+    osc.start(now + start);
+    osc.stop(now + start + 0.2);
+  }
+}
+
 function StepTimer({ seconds }: { seconds: number }) {
   const [remaining, setRemaining] = useState(seconds);
   const [running, setRunning] = useState(false);
   const ref = useRef<ReturnType<typeof setInterval> | null>(null);
+  // Created on the Start/Resume click (a user gesture) so the browser allows
+  // it to play later when the timer actually finishes, unattended.
+  const audioCtxRef = useRef<AudioContext | null>(null);
 
   useEffect(() => {
     if (!running) return;
@@ -58,12 +77,39 @@ function StepTimer({ seconds }: { seconds: number }) {
     };
   }, [running]);
 
+  // Repeats until the cook dismisses it (Stop), not just a one-shot chime —
+  // easy to miss three beeps over a running stove.
+  const alarmRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  useEffect(() => {
+    if (remaining === 0 && audioCtxRef.current) {
+      const ctx = audioCtxRef.current;
+      playAlarm(ctx);
+      alarmRef.current = setInterval(() => playAlarm(ctx), 2000);
+    }
+    return () => {
+      if (alarmRef.current) {
+        clearInterval(alarmRef.current);
+        alarmRef.current = null;
+      }
+    };
+  }, [remaining]);
+
   const done = remaining === 0;
   return (
     <div class="step-timer">
       <span class="timer">{mmss(remaining)}</span>
       {!done && (
-        <button type="button" onClick={() => setRunning((v) => !v)}>
+        <button
+          type="button"
+          onClick={() => {
+            if (!running) {
+              const AudioCtx = window.AudioContext ?? (window as any).webkitAudioContext;
+              if (AudioCtx && !audioCtxRef.current) audioCtxRef.current = new AudioCtx();
+              audioCtxRef.current?.resume();
+            }
+            setRunning((v) => !v);
+          }}
+        >
           {running ? 'Pause' : remaining === seconds ? 'Start' : 'Resume'}
         </button>
       )}
@@ -74,7 +120,7 @@ function StepTimer({ seconds }: { seconds: number }) {
           setRemaining(seconds);
         }}
       >
-        Reset
+        {done ? 'Stop' : 'Reset'}
       </button>
       {done && (
         <span class="timer-done" role="status">
