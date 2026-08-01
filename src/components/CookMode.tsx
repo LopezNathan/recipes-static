@@ -77,8 +77,21 @@ function StepTimer({ seconds }: { seconds: number }) {
     };
   }, [running]);
 
+  // Repeats until the cook dismisses it (Stop), not just a one-shot chime —
+  // easy to miss three beeps over a running stove.
+  const alarmRef = useRef<ReturnType<typeof setInterval> | null>(null);
   useEffect(() => {
-    if (remaining === 0 && audioCtxRef.current) playAlarm(audioCtxRef.current);
+    if (remaining === 0 && audioCtxRef.current) {
+      const ctx = audioCtxRef.current;
+      playAlarm(ctx);
+      alarmRef.current = setInterval(() => playAlarm(ctx), 2000);
+    }
+    return () => {
+      if (alarmRef.current) {
+        clearInterval(alarmRef.current);
+        alarmRef.current = null;
+      }
+    };
   }, [remaining]);
 
   const done = remaining === 0;
@@ -107,7 +120,7 @@ function StepTimer({ seconds }: { seconds: number }) {
           setRemaining(seconds);
         }}
       >
-        Reset
+        {done ? 'Stop' : 'Reset'}
       </button>
       {done && (
         <span class="timer-done" role="status">
