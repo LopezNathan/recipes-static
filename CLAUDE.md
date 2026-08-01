@@ -79,7 +79,7 @@ node -e 'const fs=require("fs");const d="src/content/recipes";const k=new Set(),
 ```bash
 npm install
 npm run dev            # local dev server
-npm run build          # astro build + pagefind index (fails on bad frontmatter)
+npm run build          # astro build (fails on bad frontmatter)
 npm test               # vitest: grocery merge + fraction rules
 npx wrangler pages deploy dist   # deploy the built site to Cloudflare Pages
 ```

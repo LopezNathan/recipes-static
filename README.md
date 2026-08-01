@@ -1,15 +1,14 @@
 # recipes-static
 
 A fully static recipe site: [Astro](https://astro.build) + markdown recipes
-with Zod-validated frontmatter, deployed to Cloudflare Pages. No server, no
-database.
+with Zod-validated frontmatter, deployed to Cloudflare Pages.
 
 ## Quick start
 
 ```bash
 npm install
 npm run dev            # http://localhost:4321
-npm run build          # astro build + pagefind search index → dist/
+npm run build          # astro build → dist/
 npm test               # vitest: grocery-merge and fraction rules
 ```
 
@@ -26,7 +25,6 @@ src/
     recipes/[slug].astro
     tags/[tag].astro
     grocery.astro      # merged grocery list
-    search.astro       # Pagefind search
   components/
     CookMode.tsx       # serving stepper + per-step timers (client:visible)
     GroceryList.tsx    # recipe selection + merge (client:visible)
@@ -53,7 +51,6 @@ tests/                 # vitest
   `localStorage`), quantities merge by item and dimension. Mass, volume, and
   count are never mixed — the same item measured two ways shows as
   `onion — 2, plus 200 g`.
-- **Search** via Pagefind, indexed at build.
 - Dark, minimal styling, no CSS framework.
 
 ## Adding recipes

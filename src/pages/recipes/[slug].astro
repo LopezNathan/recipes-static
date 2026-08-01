@@ -19,21 +19,21 @@ const total = data.time.prep + data.time.cook;
 ---
 
 <Base title={data.title} description={`${data.title} — ${data.servings} servings`}>
-  <article data-pagefind-body>
-    <h1 data-pagefind-meta="title">{data.title}</h1>
+  <article>
+    <h1>{data.title}</h1>
 
     <div class="recipe-meta">
       <span>Prep {formatMinutes(data.time.prep)}</span>
       <span>Cook {formatMinutes(data.time.cook)}</span>
       <span>Total {formatMinutes(total)}</span>
-      {data.rating && <span data-pagefind-filter="rating">{'★'.repeat(data.rating)}</span>}
+      {data.rating && <span>{'★'.repeat(data.rating)}</span>}
     </div>
 
     {
       data.tags.length > 0 && (
         <div class="tags">
           {data.tags.map((tag) => (
-            <a class="tag" href={`/tags/${tag}/`} data-pagefind-filter="tag">
+            <a class="tag" href={`/tags/${tag}/`}>
               {tag}
             </a>
           ))}
@@ -58,7 +58,7 @@ const total = data.time.prep + data.time.cook;
 
     <p class="muted recipe-edit-link">
       <a
-        href={`https://github.com/LopezNathan/recipes-static/edit/static-site/src/content/recipes/${recipe.id}.md`}
+        href={`https://github.com/LopezNathan/recipes-static/edit/main/src/content/recipes/${recipe.id}.md`}
         rel="noopener"
         target="_blank"
       >
