@@ -79,16 +79,6 @@ h2 {
 .muted {
   color: var(--muted);
 }
-.page-title {
-  display: flex;
-  align-items: baseline;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-}
-.page-title h1 {
-  margin: 0.2rem 0;
-}
-
 /* recipe grid */
 .grid {
   display: grid;
@@ -180,15 +170,21 @@ h2 {
   padding-left: 0.9rem;
   border-left: 1px solid var(--border);
 }
-/* homepage: sort picker at the end of the filter bar */
+/* homepage: recipe count + sort picker, between the filter bar and the grid */
+.list-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.9rem;
+  margin: 0 0 0.75rem;
+  font-size: 0.8rem;
+}
 .sort-control {
   display: flex;
   align-items: center;
   gap: 0.4rem;
   flex: 0 0 auto;
-  font-size: 0.8rem;
-  padding-left: 0.9rem;
-  border-left: 1px solid var(--border);
 }
 .sort-select {
   font: inherit;
@@ -213,13 +209,6 @@ h2 {
   .filter-row .tags {
     padding-left: 0;
     border-left: none;
-  }
-  .sort-control {
-    padding-left: 0;
-    border-left: none;
-  }
-  .sort-select {
-    flex: 1 1 auto;
   }
 }
 .search-input:focus {
