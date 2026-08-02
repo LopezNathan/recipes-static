@@ -35,10 +35,7 @@ const restTags = sortedTags.slice(TOP_TAG_COUNT).map(([tag]) => tag);
 ---
 
 <Base title="Recipes" description="A static recipe collection.">
-  <div class="page-title">
-    <h1>Recipes</h1>
-    <span class="muted">{recipes.length} recipes</span>
-  </div>
+  <h1 class="visually-hidden">Recipes</h1>
 
   <div class="filter-row">
     <input
@@ -48,18 +45,6 @@ const restTags = sortedTags.slice(TOP_TAG_COUNT).map(([tag]) => tag);
       placeholder="Search…"
       aria-label="Search recipes"
     />
-    <label class="sort-control">
-      <span class="muted">Sort</span>
-      <select id="recipeSort" class="sort-select">
-        {
-          SORT_OPTIONS.map((opt) => (
-            <option value={opt.value} selected={opt.value === DEFAULT_SORT}>
-              {opt.label}
-            </option>
-          ))
-        }
-      </select>
-    </label>
     <div class="tags" id="tagFilter">
       <button type="button" class="tag active" data-tag="" aria-pressed="true">all</button>
     {
@@ -98,6 +83,24 @@ const restTags = sortedTags.slice(TOP_TAG_COUNT).map(([tag]) => tag);
     }
   </div>
 
+  <div class="list-bar">
+    <span class="muted" id="resultCount" data-total={recipes.length}>
+      {recipes.length} recipes
+    </span>
+    <label class="sort-control">
+      <span class="muted">Sort</span>
+      <select id="recipeSort" class="sort-select">
+        {
+          SORT_OPTIONS.map((opt) => (
+            <option value={opt.value} selected={opt.value === DEFAULT_SORT}>
+              {opt.label}
+            </option>
+          ))
+        }
+      </select>
+    </label>
+  </div>
+
   <div class="grid" id="recipeGrid">
     {
       recipes.map(({ entry: r, title, created, minutes, rating }) => (
@@ -133,6 +136,8 @@ const restTags = sortedTags.slice(TOP_TAG_COUNT).map(([tag]) => tag);
     const extraTags = document.getElementById('extraTags');
     const grid = document.getElementById('recipeGrid');
     const noResults = document.getElementById('noResults');
+    const resultCount = document.getElementById('resultCount');
+    const total = Number(resultCount?.dataset.total ?? 0);
     let activeTag = '';
 
     const cards = [...(grid?.querySelectorAll<HTMLElement>('.card') ?? [])].map((el) => ({
@@ -155,6 +160,10 @@ const restTags = sortedTags.slice(TOP_TAG_COUNT).map(([tag]) => tag);
         if (show) visible++;
       }
       if (noResults) noResults.hidden = visible > 0;
+      if (resultCount) {
+        resultCount.textContent =
+          visible === total ? `${total} recipes` : `${visible} of ${total} recipes`;
+      }
     }
 
     function applySort() {
