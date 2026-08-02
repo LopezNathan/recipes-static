@@ -2,26 +2,36 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import { formatMinutes } from '../lib/time';
+import { DEFAULT_SORT, SORT_OPTIONS, sortRecipes } from '../lib/sort';
 
 const TOP_TAG_COUNT = 10;
 
-const recipes = (await getCollection('recipes')).sort((a, b) =>
-  a.data.title.localeCompare(b.data.title),
+function totalTime(t: { prep: number; cook: number }) {
+  return t.prep + t.cook;
+}
+
+// Flatten the fields the sorts care about, then render in the default order.
+// The client re-sorts the same cards from their data attributes.
+const recipes = sortRecipes(
+  (await getCollection('recipes')).map((r) => ({
+    entry: r,
+    title: r.data.title,
+    created: r.data.created ? r.data.created.getTime() : 0,
+    minutes: totalTime(r.data.time),
+    rating: r.data.rating ?? 0,
+  })),
+  DEFAULT_SORT,
 );
 
 const tagCounts = new Map<string, number>();
-for (const r of recipes) {
-  for (const tag of r.data.tags) tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+for (const { entry } of recipes) {
+  for (const tag of entry.data.tags) tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
 }
 const sortedTags = [...tagCounts.entries()].sort(
   (a, b) => b[1] - a[1] || a[0].localeCompare(b[0]),
 );
 const topTags = sortedTags.slice(0, TOP_TAG_COUNT).map(([tag]) => tag);
 const restTags = sortedTags.slice(TOP_TAG_COUNT).map(([tag]) => tag);
-
-function totalTime(t: { prep: number; cook: number }) {
-  return t.prep + t.cook;
-}
 ---
 
 <Base title="Recipes" description="A static recipe collection.">
@@ -38,6 +48,18 @@ function totalTime(t: { prep: number; cook: number }) {
       placeholder="Search…"
       aria-label="Search recipes"
     />
+    <label class="sort-control">
+      <span class="muted">Sort</span>
+      <select id="recipeSort" class="sort-select">
+        {
+          SORT_OPTIONS.map((opt) => (
+            <option value={opt.value} selected={opt.value === DEFAULT_SORT}>
+              {opt.label}
+            </option>
+          ))
+        }
+      </select>
+    </label>
     <div class="tags" id="tagFilter">
       <button type="button" class="tag active" data-tag="" aria-pressed="true">all</button>
     {
@@ -78,17 +100,21 @@ function totalTime(t: { prep: number; cook: number }) {
 
   <div class="grid" id="recipeGrid">
     {
-      recipes.map((r) => (
+      recipes.map(({ entry: r, title, created, minutes, rating }) => (
         <a
           class:list={['card', r.data.image ? 'has-image' : 'has-placeholder']}
           href={`/recipes/${r.id}/`}
           data-tags={r.data.tags.join(' ')}
+          data-title={title}
+          data-created={created}
+          data-minutes={minutes}
+          data-rating={rating}
           style={r.data.image ? `--card-image: url('${r.data.image}')` : undefined}
         >
-          <h3>{r.data.title}</h3>
+          <h3>{title}</h3>
           <div class="meta">
-            {r.data.servings} servings · {formatMinutes(totalTime(r.data.time))}
-            {r.data.rating ? ` · ${'★'.repeat(r.data.rating)}` : ''}
+            {r.data.servings} servings · {formatMinutes(minutes)}
+            {rating ? ` · ${'★'.repeat(rating)}` : ''}
           </div>
         </a>
       ))
@@ -98,7 +124,10 @@ function totalTime(t: { prep: number; cook: number }) {
   <p class="muted" id="noResults" hidden>No recipes match.</p>
 
   <script>
+    import { DEFAULT_SORT, isSortKey, sortRecipes } from '../lib/sort';
+
     const search = document.getElementById('recipeSearch') as HTMLInputElement | null;
+    const sortSelect = document.getElementById('recipeSort') as HTMLSelectElement | null;
     const filterRow = document.querySelector('.filter-row');
     const moreToggle = document.getElementById('moreTagsToggle');
     const extraTags = document.getElementById('extraTags');
@@ -106,19 +135,32 @@ function totalTime(t: { prep: number; cook: number }) {
     const noResults = document.getElementById('noResults');
     let activeTag = '';
 
+    const cards = [...(grid?.querySelectorAll<HTMLElement>('.card') ?? [])].map((el) => ({
+      el,
+      tags: (el.dataset.tags ?? '').split(' '),
+      title: el.dataset.title ?? '',
+      created: Number(el.dataset.created ?? 0),
+      minutes: Number(el.dataset.minutes ?? 0),
+      rating: Number(el.dataset.rating ?? 0),
+    }));
+
     function applyFilters() {
       const query = (search?.value ?? '').trim().toLowerCase();
       let visible = 0;
-      grid?.querySelectorAll<HTMLElement>('.card').forEach((card) => {
-        const tags = (card.dataset.tags ?? '').split(' ');
-        const title = (card.querySelector('h3')?.textContent ?? '').toLowerCase();
-        const matchesTag = !activeTag || tags.includes(activeTag);
-        const matchesSearch = !query || title.includes(query);
+      for (const card of cards) {
+        const matchesTag = !activeTag || card.tags.includes(activeTag);
+        const matchesSearch = !query || card.title.toLowerCase().includes(query);
         const show = matchesTag && matchesSearch;
-        card.style.display = show ? '' : 'none';
+        card.el.style.display = show ? '' : 'none';
         if (show) visible++;
-      });
+      }
       if (noResults) noResults.hidden = visible > 0;
+    }
+
+    function applySort() {
+      const raw = sortSelect?.value;
+      const key = isSortKey(raw) ? raw : DEFAULT_SORT;
+      for (const card of sortRecipes(cards, key)) grid?.appendChild(card.el);
     }
 
     filterRow?.addEventListener('click', (e) => {
@@ -142,5 +184,10 @@ function totalTime(t: { prep: number; cook: number }) {
     });
 
     search?.addEventListener('input', applyFilters);
+    sortSelect?.addEventListener('change', applySort);
+
+    // A restored select value (bfcache / reload) can differ from the rendered
+    // order, so re-sort once on load.
+    applySort();
   </script>
 </Base>
