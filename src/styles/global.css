@@ -180,6 +180,29 @@ h2 {
   padding-left: 0.9rem;
   border-left: 1px solid var(--border);
 }
+/* homepage: sort picker at the end of the filter bar */
+.sort-control {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 0 0 auto;
+  font-size: 0.8rem;
+  padding-left: 0.9rem;
+  border-left: 1px solid var(--border);
+}
+.sort-select {
+  font: inherit;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+}
+.sort-select:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+}
 @media (max-width: 30rem) {
   .filter-row {
     align-items: stretch;
@@ -190,6 +213,13 @@ h2 {
   .filter-row .tags {
     padding-left: 0;
     border-left: none;
+  }
+  .sort-control {
+    padding-left: 0;
+    border-left: none;
+  }
+  .sort-select {
+    flex: 1 1 auto;
   }
 }
 .search-input:focus {
