@@ -27,8 +27,8 @@ ingredients:
 - qty: 0.5
   unit: cup
   item: chopped fresh parsley
-- qty: 0.25
-  unit: cup
+- qty: 2.0
+  unit: tbsp
   item: chopped fresh mint
 - qty: 1.0
   unit: tbsp
@@ -63,7 +63,7 @@ ingredients:
 - qty: 1.0
   unit: null
   item: garlic clove (grated or minced)
-- qty: 0.5
+- qty: 0.25
   unit: cup
   item: chopped fresh mint
 - qty: null
@@ -75,6 +75,13 @@ ingredients:
 - qty: null
   unit: null
   item: Extra virgin olive oil
+- qty: 1.0
+  unit: null
+  item: bell pepper, sliced (optional, for sauteed peppers and onion)
+- qty: 1.0
+  unit: null
+  item: yellow onion, sliced (optional, for sauteed peppers and onion)
+  key: onion
 steps:
 - text: Get ready. If you’re using bamboo skewers, soak them in water for at least 30 minutes.
   timer: 1800
@@ -86,6 +93,10 @@ steps:
     salt to taste, and a small drizzle of olive oil. Whisk well.
 - text: Preheat the your grill. Oil the outdoor grill or indoor griddle to prevent sticking, then heat
     your grill over medium.
+- text: Optional. Sauté the bell pepper and onion. Heat a drizzle of olive oil in a skillet over
+    medium-high heat and cook the sliced bell pepper and onion until softened and lightly charred,
+    stirring occasionally. Season with a pinch of salt and set aside to serve alongside the kebabs.
+  timer: 480
 - text: Form the chicken kofta kebabs. With damp hands or gloves, shape the chicken mixture onto the skewers
     by squeezing a big fist-full onto the bottom of the skewer, then working your way up until it’s even
     throughout (see the video below for reference).
@@ -95,7 +106,7 @@ steps:
     with foil as you make the yogurt sauce.
   timer: 600
 - text: Serve. Uncover the kebabs and drizzle a bit of the yogurt on top. Serve with the remaining yogurt
-    on the side.
+    on the side, and the sauteed peppers and onion if using.
 image: https://www.themediterraneandish.com/wp-content/uploads/2024/08/TMD-Harissa-Chicken-Kabobs-Leads-01-Horizontal.jpg
 rating: 5
 created: '2026-07-19'
