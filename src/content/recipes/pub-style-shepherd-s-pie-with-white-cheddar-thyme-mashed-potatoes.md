@@ -16,45 +16,59 @@ ingredients:
 - qty: 16.0
   unit: oz
   item: Yukon Gold Potatoes
+  group: Mashed Potato Topping
 - qty: 2.5
   unit: oz
   item: Celery
+  group: Beef Filling
 - qty: 0.25
   unit: oz
   item: Thyme
+  group: Mashed Potato Topping
 - qty: 2.0
   unit: tbsp
   item: Sour Cream
+  group: Mashed Potato Topping
 - qty: 13.76
   unit: oz
   item: Crushed Tomatoes
+  group: Beef Filling
 - qty: 1.0
   unit: tbsp
   item: Flour
+  group: Beef Filling
 - qty: 0.5
   unit: cup
   item: White Cheddar Cheese
+  group: Mashed Potato Topping
 - qty: 3.0
   unit: oz
   item: Carrot
+  group: Beef Filling
 - qty: 1.0
   unit: null
   item: Yellow Onion
+  group: Beef Filling
 - qty: 1.0
   unit: tsp
   item: Garlic Powder
+  group: Beef Filling
 - qty: 10.0
   unit: oz
   item: Ground Beef
+  group: Beef Filling
 - qty: 2.0
   unit: null
   item: Beef Stock Concentrate
+  group: Beef Filling
 - qty: 1.0
   unit: tbsp
   item: Cooking Oil
+  group: Beef Filling
 - qty: 2.0
   unit: tbsp
   item: Butter
+  group: Mashed Potato Topping
 - qty: null
   unit: null
   item: Salt

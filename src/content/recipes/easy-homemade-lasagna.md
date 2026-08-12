@@ -28,33 +28,43 @@ ingredients:
 - qty: 0.5
   unit: lb
   item: lean ground beef
+  group: Meat Sauce
 - qty: 0.5
   unit: lb
   item: Italian sausage
+  group: Meat Sauce
 - qty: 1.0
   unit: null
   item: yellow onion diced
+  group: Meat Sauce
 - qty: 2.0
   unit: null
   item: cloves garlic minced
+  group: Meat Sauce
 - qty: 36.0
   unit: oz
   item: pasta sauce *see note
+  group: Meat Sauce
 - qty: 2.0
   unit: tbsp
   item: tomato paste
+  group: Meat Sauce
 - qty: 1.0
   unit: tsp
   item: Italian seasoning
+  group: Meat Sauce
 - qty: 2.0
   unit: cup
   item: ricotta cheese or cottage cheese
+  group: Cheese Filling
 - qty: 0.25
   unit: cup
   item: chopped fresh parsley
+  group: Cheese Filling
 - qty: 1.0
   unit: null
   item: large egg beaten
+  group: Cheese Filling
 steps:
 - text: Preheat the oven to 350°F. Bring a large pot of salted water to a boil. Add the lasagna noodles
     and cook until al dente (firm) according to package directions. Drain, rinse under cold water, and

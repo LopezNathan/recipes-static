@@ -12,6 +12,8 @@ const ingredient = z.object({
   item: z.string().min(1),
   // optional grouping key for the grocery merge; falls back to a derived key
   key: z.string().optional(),
+  // optional display heading for splitting the ingredient list (e.g. "Sauce")
+  group: z.string().optional(),
 });
 
 const step = z.object({

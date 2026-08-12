@@ -6,6 +6,7 @@ interface Ingredient {
   qty: number | null;
   unit: string | null;
   item: string;
+  group?: string;
 }
 interface Step {
   text: string;
@@ -131,6 +132,24 @@ function StepTimer({ seconds }: { seconds: number }) {
   );
 }
 
+/**
+ * Split ingredients into their display groups, preserving original order and
+ * index (checkbox state is keyed by index into the flat ingredients array).
+ * Ungrouped recipes collapse to a single entry with no heading.
+ */
+function groupIngredients(
+  ingredients: Ingredient[]
+): [string | undefined, { ing: Ingredient; i: number }[]][] {
+  const groups = new Map<string | undefined, { ing: Ingredient; i: number }[]>();
+  ingredients.forEach((ing, i) => {
+    const key = ing.group;
+    const list = groups.get(key);
+    if (list) list.push({ ing, i });
+    else groups.set(key, [{ ing, i }]);
+  });
+  return [...groups.entries()];
+}
+
 function toggle(set: Set<number>, i: number): Set<number> {
   const next = new Set(set);
   if (next.has(i)) next.delete(i);
@@ -176,20 +195,25 @@ export default function CookMode({ baseServings, ingredients, steps }: Props) {
               </span>
             )}
           </h2>
-          <ul class="ingredients check-list">
-            {ingredients.map((ing, i) => (
-              <li key={i} class={`ing-item${checked.has(i) ? ' checked' : ''}`}>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={checked.has(i)}
-                    onChange={() => setChecked((s) => toggle(s, i))}
-                  />
-                  <span class="ing-text">{ingredientLine(ing, servings, baseServings)}</span>
-                </label>
-              </li>
-            ))}
-          </ul>
+          {groupIngredients(ingredients).map(([group, items]) => (
+            <div class="ing-group" key={group ?? ''}>
+              {group && <h3 class="ing-group-heading">{group}</h3>}
+              <ul class="ingredients check-list">
+                {items.map(({ ing, i }) => (
+                  <li key={i} class={`ing-item${checked.has(i) ? ' checked' : ''}`}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={checked.has(i)}
+                        onChange={() => setChecked((s) => toggle(s, i))}
+                      />
+                      <span class="ing-text">{ingredientLine(ing, servings, baseServings)}</span>
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
         <div>

@@ -15,39 +15,51 @@ ingredients:
 - qty: 1.0
   unit: null
   item: Carrots
+  group: Soup
 - qty: 0.5
   unit: null
   item: Yellow Onion
+  group: Soup
 - qty: 1.0
   unit: null
   item: Roma Tomato
+  group: Soup
 - qty: 1.0
   unit: tsp
   item: Italian Seasoning
+  group: Soup
 - qty: 9.0
   unit: oz
   item: Italian Chicken Sausage
+  group: Soup
 - qty: 1.5
   unit: oz
   item: Tomato Paste
+  group: Soup
 - qty: 0.5
   unit: cup
   item: Farro
+  group: Soup
 - qty: 2.0
   unit: null
   item: Chicken Stock Concentrate
+  group: Soup
 - qty: 1.0
   unit: null
   item: Ciabatta Bread
+  group: Herb Butter Toasts
 - qty: 0.25
   unit: cup
   item: Parmesan Cheese
+  group: Soup
 - qty: 1.5
   unit: tbsp
   item: Butter
+  group: Herb Butter Toasts
 - qty: 3.0
   unit: tsp
   item: Olive Oil
+  group: Soup
 - qty: null
   unit: null
   item: Salt

@@ -15,73 +15,96 @@ ingredients:
 - qty: 1.0
   unit: lb
   item: ground chicken
+  group: Kofta
 - qty: 0.3333
   unit: cup
   item: breadcrumbs or gluten free breadcrumbs
+  group: Kofta
 - qty: 1.0
   unit: null
   item: small white onion (grated (about 1/2 cup grated onion))
+  group: Kofta
 - qty: 1.0
   unit: null
   item: garlic clove (minced)
+  group: Kofta
 - qty: 0.5
   unit: cup
   item: chopped fresh parsley
+  group: Kofta
 - qty: 2.0
   unit: tbsp
   item: chopped fresh mint
+  group: Kofta
 - qty: 1.0
   unit: tbsp
   item: harissa (depending on how spicy you like it)
+  group: Kofta
 - qty: 1.0
   unit: tbsp
   item: tomato paste
+  group: Kofta
 - qty: 1.0
   unit: null
   item: egg
+  group: Kofta
 - qty: null
   unit: null
   item: Extra virgin olive oil
+  group: Kofta
 - qty: 1.0
   unit: tsp
   item: ground coriander
+  group: Kofta
 - qty: 0.5
   unit: tsp
   item: cumin
+  group: Kofta
 - qty: 0.5
   unit: tsp
   item: sweet paprika
+  group: Kofta
 - qty: null
   unit: null
   item: Kosher salt
+  group: Kofta
 - qty: null
   unit: null
   item: Black pepper
+  group: Kofta
 - qty: 1.0
   unit: cup
   item: Greek yogurt
+  group: Garlic-Mint Yogurt Sauce
 - qty: 1.0
   unit: null
   item: garlic clove (grated or minced)
+  group: Garlic-Mint Yogurt Sauce
 - qty: 0.25
   unit: cup
   item: chopped fresh mint
+  group: Garlic-Mint Yogurt Sauce
 - qty: null
   unit: null
   item: Zest of 1 lemon
+  group: Garlic-Mint Yogurt Sauce
 - qty: null
   unit: null
   item: Kosher salt
+  group: Garlic-Mint Yogurt Sauce
 - qty: null
   unit: null
   item: Extra virgin olive oil
+  group: Garlic-Mint Yogurt Sauce
 - qty: 1.0
   unit: null
   item: bell pepper, sliced (optional, for sauteed peppers and onion)
+  group: Sauteed Peppers and Onion (optional)
 - qty: 1.0
   unit: null
   item: yellow onion, sliced (optional, for sauteed peppers and onion)
   key: onion
+  group: Sauteed Peppers and Onion (optional)
 steps:
 - text: Get ready. If you’re using bamboo skewers, soak them in water for at least 30 minutes.
   timer: 1800

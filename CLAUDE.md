@@ -28,6 +28,7 @@ ingredients:               # required, non-empty
     unit: g|kg|oz|lb|ml|l|tsp|tbsp|cup | null   # null = countable item
     item: string           # display name; prep notes after a comma
     key: string            # optional grouping key for the grocery merge
+    group: string          # optional display heading (e.g. "Sauce", "Kofta")
 steps:                     # required, non-empty
   - text: string
     timer: integer         # optional, seconds — only if the step waits
