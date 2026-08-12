@@ -16,6 +16,7 @@ const { recipe } = Astro.props;
 const { data } = recipe;
 const { Content } = await render(recipe);
 const total = data.time.prep + data.time.cook;
+const sourceHost = data.source ? new URL(data.source).hostname.replace(/^www\./, '') : null;
 ---
 
 <Base title={data.title} description={`${data.title} — ${data.servings} servings`}>
@@ -42,7 +43,9 @@ const total = data.time.prep + data.time.cook;
     }
 
     {data.source && (
-      <p class="muted">Source: <a href={data.source} rel="noopener">{data.source}</a></p>
+      <p class="muted">
+        Source: <a href={data.source} rel="noopener" target="_blank" title={data.source}>{sourceHost} ↗</a>
+      </p>
     )}
 
     <div class="notes">
