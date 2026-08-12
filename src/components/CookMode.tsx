@@ -157,10 +157,47 @@ function toggle(set: Set<number>, i: number): Set<number> {
   return next;
 }
 
+/**
+ * Keep the screen awake while the recipe is open. iOS releases the lock
+ * whenever the tab/app is backgrounded, so it must be re-requested on
+ * visibilitychange (e.g. switching apps and back while cooking).
+ */
+function useWakeLock() {
+  useEffect(() => {
+    let sentinel: { release: () => Promise<void> } | null = null;
+
+    async function acquire() {
+      const wakeLock = (navigator as Navigator & {
+        wakeLock?: { request: (type: 'screen') => Promise<{ release: () => Promise<void> }> };
+      }).wakeLock;
+      if (!wakeLock) return;
+      try {
+        sentinel = await wakeLock.request('screen');
+      } catch {
+        // permission denied or unsupported state — ignore, screen just sleeps normally
+      }
+    }
+
+    function onVisibilityChange() {
+      if (document.visibilityState === 'visible') acquire();
+    }
+
+    acquire();
+    document.addEventListener('visibilitychange', onVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      sentinel?.release().catch(() => {});
+    };
+  }, []);
+}
+
 export default function CookMode({ baseServings, ingredients, steps }: Props) {
   const [servings, setServings] = useState(baseServings);
   const [checked, setChecked] = useState<Set<number>>(new Set());
   const [done, setDone] = useState<Set<number>>(new Set());
+
+  useWakeLock();
 
   return (
     <div>
