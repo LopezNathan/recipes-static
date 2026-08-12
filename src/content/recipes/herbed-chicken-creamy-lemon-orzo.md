@@ -14,33 +14,43 @@ ingredients:
 - qty: 4.0
   unit: oz
   item: Orzo Pasta
+  group: Creamy Lemon Orzo
 - qty: 1.0
   unit: null
   item: Zucchini
+  group: Creamy Lemon Orzo
 - qty: 2.0
   unit: tbsp
   item: Cream Cheese
+  group: Creamy Lemon Orzo
 - qty: 1.0
   unit: null
   item: Chicken Stock Concentrate
+  group: Pan Sauce
 - qty: 1.0
   unit: null
   item: Lemon
+  group: Creamy Lemon Orzo
 - qty: 0.5
   unit: tbsp
   item: Italian Seasoning
+  group: Herbed Chicken
 - qty: 12.0
   unit: oz
   item: Chicken Cutlets
+  group: Herbed Chicken
 - qty: 0.25
   unit: oz
   item: Parsley
+  group: Pan Sauce
 - qty: 1.0
   unit: tsp
   item: Garlic Powder
+  group: Creamy Lemon Orzo
 - qty: 1.0
   unit: null
   item: Green Olives
+  group: Pan Sauce
 - qty: null
   unit: null
   item: Salt

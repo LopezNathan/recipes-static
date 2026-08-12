@@ -16,15 +16,19 @@ ingredients:
 - qty: 1.0
   unit: tsp
   item: salt
+  group: Chicken Bites
 - qty: 1.0
   unit: tsp
   item: fresh cracked black pepper
+  group: Chicken Bites
 - qty: 2.0
   unit: tsp
   item: onion powder
+  group: Chicken Bites
 - qty: 3.0
   unit: null
   item: boneless, skinless chicken breasts cut into bite-sized chunks
+  group: Chicken Bites
 - qty: 2.0
   unit: null
   item: bunch of asparagus, rinsed and trimmed
@@ -34,6 +38,7 @@ ingredients:
 - qty: 1.0
   unit: tsp
   item: olive oil
+  group: Chicken Bites
 - qty: 2.0
   unit: tsp
   item: minced garlic, divided (1 teaspoon for the chicken bites and 1 teaspoon for the asparagus and
@@ -41,18 +46,23 @@ ingredients:
 - qty: 1.0
   unit: tsp
   item: Italian seasoning or Herbes de Provence
+  group: Chicken Bites
 - qty: 1.0
   unit: tbsp
   item: hot sauce, optional (we used Sriracha)
+  group: Garlic Butter Sauce
 - qty: 0.5
   unit: cup
   item: low-sodium chicken broth
+  group: Garlic Butter Sauce
 - qty: null
   unit: null
   item: Juice of 1/2 lemon
+  group: Garlic Butter Sauce
 - qty: 1.0
   unit: tbsp
   item: minced parsley
+  group: Garlic Butter Sauce
 - qty: null
   unit: null
   item: Crushed red chili pepper flakes, optional

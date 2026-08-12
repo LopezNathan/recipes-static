@@ -17,42 +17,55 @@ ingredients:
 - qty: 3.0
   unit: null
   item: chicken breasts, sliced in half length-wise to create 6 cutlets
+  group: Chicken Cutlets
 - qty: 0.5
   unit: cup
   item: all-purpose flour can also use gluten-free flour blend or white whole wheat
+  group: Chicken Cutlets
 - qty: 3.0
   unit: null
   item: eggs, whisked
+  group: Chicken Cutlets
 - qty: 0.3333
   unit: cup
   item: olive oil
+  group: Chicken Cutlets
 - qty: 1.5
   unit: cup
   item: breadcrumbs
+  group: Chicken Cutlets
 - qty: 0.5
   unit: cup
   item: parmesan cheese, shredded
+  group: Chicken Cutlets
 - qty: 0.5
   unit: tsp
   item: salt & pepper, each
+  group: Chicken Cutlets
 - qty: 2.0
   unit: tsp
   item: Italian herb blend (thyme, oregano, basil, rosemary)
+  group: Chicken Cutlets
 - qty: 1.0
   unit: tsp
   item: garlic powder
+  group: Chicken Cutlets
 - qty: 6.0
   unit: null
   item: slices Mozzarella
+  group: Assembly
 - qty: 1.5
   unit: cup
   item: marinara sauce
+  group: Assembly
 - qty: 0.3333
   unit: cup
   item: parmesan cheese, shredded
+  group: Assembly
 - qty: 2.0
   unit: tbsp
   item: fresh basil, chopped
+  group: Assembly
 steps:
 - text: Preheat oven to 425F
 - text: 'Tenderize chicken: place chicken cutlets/breasts in a large ziplock bag or between two sheets
