@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const recipes = (await getCollection('recipes')).sort((a, b) => a.data.title.localeCompare(b.data.title));
+---
+
+<Base title="Recipe editor" description="Private recipe editor.">
+  <div class="editor-form-header">
+    <div>
+      <h1>Recipe editor</h1>
+      <p class="muted">Create a recipe or edit an existing one. Every submission opens a GitHub pull request.</p>
+    </div>
+    <a class="btn" href="/editor/recipe">+ New recipe</a>
+  </div>
+
+  <label class="editor-search-label" for="editorRecipeSearch">Find a recipe to edit</label>
+  <input
+    type="search"
+    id="editorRecipeSearch"
+    class="search-input"
+    placeholder="Search by recipe name…"
+    aria-label="Search recipes to edit"
+  />
+
+  <div class="editor-picker-header">
+    <h2 id="editorListHeading">All recipes</h2>
+    <span class="muted" id="editorRecipeCount">{recipes.length} recipes</span>
+  </div>
+  <div class="editor-recipe-list" id="editorRecipeList">
+    {recipes.map((recipe) => (
+      <a
+        class="editor-recipe-link"
+        href={`/editor/recipe?slug=${encodeURIComponent(recipe.id)}`}
+        data-title={recipe.data.title.toLowerCase()}
+      >
+        <span>{recipe.data.title}</span>
+        <span class="editor-recipe-action" aria-hidden="true">Edit →</span>
+      </a>
+    ))}
+  </div>
+  <p class="muted" id="editorNoResults" hidden>No recipes match.</p>
+
+  <script>
+    const search = document.getElementById('editorRecipeSearch') as HTMLInputElement | null;
+    const list = document.getElementById('editorRecipeList');
+    const count = document.getElementById('editorRecipeCount');
+    const heading = document.getElementById('editorListHeading');
+    const noResults = document.getElementById('editorNoResults');
+    const recipes = [...(list?.querySelectorAll<HTMLElement>('.editor-recipe-link') ?? [])];
+    search?.addEventListener('input', () => {
+      const query = search.value.trim().toLowerCase();
+      let visible = 0;
+      for (const recipe of recipes) {
+        const matches = !query || (recipe.dataset.title ?? '').includes(query);
+        recipe.hidden = !matches;
+        if (matches) visible++;
+      }
+      if (heading) heading.textContent = query ? 'Search results' : 'All recipes';
+      if (count) count.textContent = query ? `${visible} recipes` : `${recipes.length} recipes`;
+      if (noResults) noResults.hidden = visible > 0;
+    });
+  </script>
+
+</Base>

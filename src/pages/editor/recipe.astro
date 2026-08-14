@@ -1,0 +1,13 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import RecipeEditor from '../../components/editor/RecipeEditor';
+
+const slug = Astro.url.searchParams.get('slug') || undefined;
+const recipes = await getCollection('recipes');
+const existingTags = [...new Set(recipes.flatMap((recipe) => recipe.data.tags))].sort();
+---
+
+<Base title={slug ? 'Edit recipe' : 'New recipe'} description="Private recipe editor.">
+  <RecipeEditor client:load slug={slug} existingTags={existingTags} />
+</Base>

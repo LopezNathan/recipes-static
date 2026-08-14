@@ -15,7 +15,9 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Type-check + build (fails on invalid frontmatter)
+      - name: Build (fails on invalid frontmatter)
         run: npm run build
+      - name: Type-check (including Pages Functions)
+        run: npm run typecheck
       - name: Unit tests (merge + fractions)
         run: npm test
