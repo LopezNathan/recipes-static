@@ -1,0 +1,5 @@
+# Local-only Cloudflare Pages Function secrets. Copy to .dev.vars.
+GITHUB_TOKEN=
+GITHUB_OWNER=
+GITHUB_REPO=
+GITHUB_BASE_BRANCH=main

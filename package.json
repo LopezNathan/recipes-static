@@ -7,16 +7,25 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "pages:dev": "wrangler pages dev dist",
     "astro": "astro",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@astrojs/preact": "^6.0.2",
     "astro": "^7.1.5",
-    "preact": "^10.24.3"
+    "js-yaml": "4.3.0",
+    "preact": "^10.24.3",
+    "zod": "4.4.3"
   },
   "devDependencies": {
-    "vitest": "^4.1.10"
+    "@cloudflare/workers-types": "4.20260317.1",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^26.2.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10",
+    "wrangler": "4.67.0"
   }
 }

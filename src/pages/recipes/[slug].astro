@@ -61,11 +61,11 @@ const sourceHost = data.source ? new URL(data.source).hostname.replace(/^www\./,
 
     <p class="muted recipe-edit-link">
       <a
-        href={`https://github.com/LopezNathan/recipes-static/edit/main/src/content/recipes/${recipe.id}.md`}
+        href={`/editor/recipe?slug=${encodeURIComponent(recipe.id)}`}
         rel="noopener"
         target="_blank"
       >
-        Edit this recipe on GitHub
+        Edit this recipe
       </a>
     </p>
   </article>
