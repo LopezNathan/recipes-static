@@ -1,13 +1,6 @@
 import { parseRecipeMarkdown, serializeRecipeMarkdown, slugify } from '../../../src/lib/recipeMarkdown';
 import { recipeFrontmatterSchema, type RecipeFrontmatter } from '../../../src/lib/recipeSchema';
-import {
-  createBranch,
-  getBaseSha,
-  getFile,
-  githubConfig,
-  openPullRequest,
-  putFile,
-} from '../../_lib/github';
+import { getFile, githubConfig, putFile } from '../../_lib/github';
 
 interface Env {
   GITHUB_TOKEN?: string;
@@ -78,24 +71,15 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
     if (mode === 'create' && existing) return json({ error: 'A recipe with this title already exists.' }, 409);
     if (mode === 'edit' && !existing) return json({ error: 'This recipe no longer exists.' }, 404);
 
-    const branch = `editor/${mode}-${slug}-${Date.now()}`;
-    const baseSha = await getBaseSha(config);
-    await createBranch(config, branch, baseSha);
     await putFile(
       config,
       path,
-      branch,
+      config.baseBranch,
       serializeRecipeMarkdown(data, payload.body || ''),
       existing?.sha,
       `${mode === 'create' ? 'Add' : 'Update'} recipe: ${data.title}`,
     );
-    const prUrl = await openPullRequest(
-      config,
-      branch,
-      `${mode === 'create' ? 'Add' : 'Update'} recipe: ${data.title}`,
-      `Opened via the \`/editor\` recipe editor. CI gates the merge.`,
-    );
-    return json({ url: prUrl, slug });
+    return json({ slug });
   } catch (error) {
     return json({ error: errorMessage(error) }, 502);
   }

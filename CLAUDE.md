@@ -10,8 +10,8 @@ frontmatter, validated by Zod at build time. No server, no database.
    `Simple Tomato Pasta` → `simple-tomato-pasta.md`.
 3. Fill in the frontmatter below. `astro build` **fails on invalid
    frontmatter** — that is intended. Fix the data, not the schema.
-4. **Branch + PR only.** `main` is protected; CI (`astro build` + `vitest`)
-   is the merge gate. Never commit recipes straight to `main`.
+4. The editor commits recipes directly to `main`. CI (`astro build` + `vitest`)
+   runs after each push; fix or revert any failed build.
 
 ## Frontmatter schema (source of truth: `src/content.config.ts`)
 

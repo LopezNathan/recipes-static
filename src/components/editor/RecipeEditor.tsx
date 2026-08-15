@@ -165,13 +165,15 @@ export default function RecipeEditor({ slug, existingTags }: Props) {
     setSubmitting(true);
     try {
       const response = await fetch('/editor/api/recipe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mode: editing ? 'edit' : 'create', slug: activeSlug, recipe: validation.data, body }) });
-      const result = await response.json() as { url?: string; error?: string };
-      if (!response.ok) throw new Error(result.error || 'Could not open pull request.');
-      setMessage({ kind: 'success', text: 'Pull request opened.' });
-      if (!result.url) throw new Error('GitHub did not return a pull request URL.');
-      window.location.assign(result.url);
+      const result = await response.json() as { slug?: string; error?: string };
+      if (!response.ok) throw new Error(result.error || 'Could not save recipe.');
+      if (!editing && result.slug) {
+        setActiveSlug(result.slug);
+        window.history.replaceState({}, '', `/editor/recipe?slug=${encodeURIComponent(result.slug)}`);
+      }
+      setMessage({ kind: 'success', text: editing ? 'Recipe updated.' : 'Recipe created.' });
     } catch (error) {
-      setMessage({ kind: 'error', text: error instanceof Error ? error.message : 'Could not open pull request.' });
+      setMessage({ kind: 'error', text: error instanceof Error ? error.message : 'Could not save recipe.' });
     } finally { setSubmitting(false); }
   }
 
@@ -179,7 +181,7 @@ export default function RecipeEditor({ slug, existingTags }: Props) {
 
   return (
     <form class="editor-form" onSubmit={submit}>
-      <div class="editor-form-header"><div><h1>{editing ? recipe.title ? `Edit ${recipe.title}` : 'Edit recipe' : 'New recipe'}</h1>{!editing && <p class="muted">Submit a recipe as a GitHub pull request.</p>}</div><a class="btn" href="/editor/">All recipes</a></div>
+      <div class="editor-form-header"><div><h1>{editing ? recipe.title ? `Edit ${recipe.title}` : 'Edit recipe' : 'New recipe'}</h1>{!editing && <p class="muted">Save the recipe directly to GitHub.</p>}</div><a class="btn" href="/editor/">All recipes</a></div>
       {message && <p class={`editor-message ${message.kind}`} role="status">{message.text}</p>}
 
       <fieldset><legend>Recipe details</legend>
@@ -205,7 +207,7 @@ export default function RecipeEditor({ slug, existingTags }: Props) {
       </fieldset>
 
       <fieldset><legend>Notes</legend><textarea rows={6} value={body} placeholder="Optional markdown notes" onInput={(e) => setBody(e.currentTarget.value)} /></fieldset>
-      <button class="editor-submit" type="submit" disabled={submitting}>{submitting ? 'Opening pull request…' : editing ? 'Open update PR' : 'Open create PR'}</button>
+      <button class="editor-submit" type="submit" disabled={submitting}>{submitting ? 'Saving…' : editing ? 'Save changes' : 'Create recipe'}</button>
     </form>
   );
 }
