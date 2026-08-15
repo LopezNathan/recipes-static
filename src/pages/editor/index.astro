@@ -9,7 +9,7 @@ const recipes = (await getCollection('recipes')).sort((a, b) => a.data.title.loc
   <div class="editor-form-header">
     <div>
       <h1>Recipe editor</h1>
-      <p class="muted">Create a recipe or edit an existing one. Every submission opens a GitHub pull request.</p>
+      <p class="muted">Create a recipe or edit an existing one. Changes are saved directly to GitHub.</p>
     </div>
     <a class="btn" href="/editor/recipe">+ New recipe</a>
   </div>

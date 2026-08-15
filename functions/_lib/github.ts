@@ -56,25 +56,6 @@ export function githubConfig(env: {
   };
 }
 
-export async function getBaseSha(config: GitHubConfig): Promise<string> {
-  const result = await gh<{ object?: { sha?: string } }>(
-    config,
-    `${repositoryPath(config)}/git/ref/heads/${encodeURIComponent(config.baseBranch)}`,
-  );
-  if (!result.response.ok || !result.data.object?.sha) {
-    throw new Error(`Could not read base branch (${result.response.status})`);
-  }
-  return result.data.object.sha;
-}
-
-export async function createBranch(config: GitHubConfig, branch: string, sha: string): Promise<void> {
-  const result = await gh(config, `${repositoryPath(config)}/git/refs`, {
-    method: 'POST',
-    body: JSON.stringify({ ref: `refs/heads/${branch}`, sha }),
-  });
-  if (!result.response.ok) throw new Error(`Could not create branch (${result.response.status})`);
-}
-
 export interface GitHubFile {
   sha: string;
   content: string;
@@ -105,22 +86,6 @@ export async function putFile(
     body: JSON.stringify({ message, branch, content: encodeBase64(content), ...(sha ? { sha } : {}) }),
   });
   if (!result.response.ok) throw new Error(`Could not commit recipe (${result.response.status})`);
-}
-
-export async function openPullRequest(
-  config: GitHubConfig,
-  branch: string,
-  title: string,
-  body: string,
-): Promise<string> {
-  const result = await gh<{ html_url?: string }>(config, `${repositoryPath(config)}/pulls`, {
-    method: 'POST',
-    body: JSON.stringify({ title, body, head: branch, base: config.baseBranch }),
-  });
-  if (!result.response.ok || !result.data.html_url) {
-    throw new Error(`Could not open pull request (${result.response.status})`);
-  }
-  return result.data.html_url;
 }
 
 /** GitHub content endpoints use base64, while Workers do not provide Node Buffer. */

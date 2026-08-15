@@ -51,6 +51,8 @@ tests/                 # vitest
   `localStorage`), quantities merge by item and dimension. Mass, volume, and
   count are never mixed — the same item measured two ways shows as
   `onion — 2, plus 200 g`.
+- **Private recipe editor** (`/editor`): Cloudflare Access-protected recipe
+  creation and editing, with valid changes committed directly to `main`.
 - Dark, minimal styling, no CSS framework.
 
 ## Adding recipes
