@@ -14,25 +14,25 @@ tags:
 - seafood
 source: https://www.savorynothings.com/garlic-butter-baked-salmon/
 ingredients:
-- qty: 1.0
+- qty: 1
   unit: null
   item: whole salmon fillet skin-on preferred
-- qty: 3.0
+- qty: 3
   unit: tbsp
   item: melted butter OR olive oil
-- qty: 2.0
+- qty: 2
   unit: null
   item: cloves garlic minced
-- qty: 1.0
+- qty: 1
   unit: tbsp
   item: brown sugar
-- qty: 1.0
+- qty: 1
   unit: tsp
   item: Italian seasoning
-- qty: 1.0
+- qty: 1
   unit: tsp
   item: ground paprika
-- qty: 1.0
+- qty: 1
   unit: tsp
   item: garlic powder
 - qty: 0.75
@@ -42,20 +42,24 @@ ingredients:
   unit: null
   item: ground black pepper
 steps:
-- text: 'Prep: Heat oven to 375°F. Place a large piece of foil on rimmed baking sheet, place salmon fillet
-    on top (skin side down, pink side up). Crimp edges of foil around salmon to make a little "boat".'
-- text: 'Season: Combine melted butter and minced garlic. Brush half of mixture over salmon. Combine remaining
-    ingredients in a small bowl, evenly sprinkle over salmon. Drizzle with remaining garlic butter.'
-- text: 'Bake: Bake salmon for 15-22 minutes, depending on preferred doneness (see notes for internal
-    temperatures). Baste salmon with juices halfway through baking, if desired. Once done, remove salmon
-    from oven and rest for 5 minutes, then serve.'
+- text: >-
+    Prep: Heat oven to 375°F. Place a large piece of foil on rimmed baking sheet, place salmon fillet on top (skin side
+    down, pink side up). Crimp edges of foil around salmon to make a little "boat".
+- text: >-
+    Season: Combine melted butter and minced garlic. Brush half of mixture over salmon. Combine remaining ingredients in
+    a small bowl, evenly sprinkle over salmon. Drizzle with remaining garlic butter.
+- text: >-
+    Bake: Bake salmon for 15-22 minutes, depending on preferred doneness (see notes for internal temperatures). Baste
+    salmon with juices halfway through baking, if desired. Once done, remove salmon from oven and rest for 5 minutes,
+    then serve.
   timer: 1320
-- text: I usually cook my salmon to 125°F, then let it rest until it reaches 130°F – about 5 minutes.
-    Then I serve it. But please pick a temperature you feel comfortable with, and if you want to cook
-    your salmon to 145°F it will still be perfectly nice. Just make sure you pull it FAST when it reaches
-    the temperature.
+- text: >-
+    I usually cook my salmon to 125°F, then let it rest until it reaches 130°F – about 5 minutes. Then I serve it. But
+    please pick a temperature you feel comfortable with, and if you want to cook your salmon to 145°F it will still be
+    perfectly nice. Just make sure you pull it FAST when it reaches the temperature.
   timer: 300
 image: https://www.savorynothings.com/wp-content/uploads/2022/01/oven-baked-salmon-recipe-image-9-150x200.jpg
+rating: 5
 created: '2026-06-03'
 ---
 
