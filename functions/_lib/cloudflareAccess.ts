@@ -67,8 +67,14 @@ export async function hasValidAccessJwt(token: string | null): Promise<boolean> 
   if (parts.length !== 3) return false;
 
   const [encodedHeader, encodedPayload, encodedSignature] = parts;
-  const header = parseJson<{ alg?: unknown; kid?: unknown }>(new TextDecoder().decode(decodeBase64Url(encodedHeader)));
-  const payload = parseJson<AccessJwtPayload>(new TextDecoder().decode(decodeBase64Url(encodedPayload)));
+  let header: { alg?: unknown; kid?: unknown } | null;
+  let payload: AccessJwtPayload | null;
+  try {
+    header = parseJson<{ alg?: unknown; kid?: unknown }>(new TextDecoder().decode(decodeBase64Url(encodedHeader)));
+    payload = parseJson<AccessJwtPayload>(new TextDecoder().decode(decodeBase64Url(encodedPayload)));
+  } catch {
+    return false;
+  }
   if (!header || !payload || header.alg !== 'RS256' || typeof header.kid !== 'string') return false;
   if (payload.iss !== ACCESS_ISSUER || !hasAudience(payload.aud)) return false;
 
@@ -99,11 +105,19 @@ export async function hasValidAccessJwt(token: string | null): Promise<boolean> 
 }
 
 export function isEditorPath(pathname: string): boolean {
-  try {
-    pathname = decodeURIComponent(pathname);
-  } catch {
-    return true;
+  // Decode repeatedly so an encoded separator such as `%252F` cannot evade
+  // the check and then be decoded by a later layer in the request pipeline.
+  for (let index = 0; index < 3; index++) {
+    let decoded: string;
+    try {
+      decoded = decodeURIComponent(pathname);
+    } catch {
+      return true;
+    }
+    if (decoded === pathname) break;
+    pathname = decoded;
   }
+
   const path = pathname.toLowerCase();
-  return path === '/editor' || path.startsWith('/editor/');
+  return path === '/editor' || path.startsWith('/editor/') || path.startsWith('/editor.');
 }

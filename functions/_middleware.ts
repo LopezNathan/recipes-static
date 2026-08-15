@@ -7,7 +7,8 @@ interface Env {
 type PagesContext = EventContext<Env, string, Record<string, unknown>>;
 
 export const onRequest: PagesFunction<Env> = async (context: PagesContext) => {
-  if (!isEditorPath(new URL(context.request.url).pathname)) {
+  const url = new URL(context.request.url);
+  if (!isEditorPath(url.pathname)) {
     return context.next();
   }
 
