@@ -49,14 +49,14 @@ function cleanRecipe(recipe: RecipeFrontmatter, ingredients: FormIngredient[], s
 function IngredientRow({ ingredient, onChange, onRemove }: { ingredient: FormIngredient; onChange: (value: FormIngredient) => void; onRemove: () => void }) {
   return (
     <div class="editor-row editor-ingredient-row">
-      <input type="number" min="0" step="any" placeholder="Qty" aria-label="Quantity" value={ingredient.qty} onInput={(e) => onChange({ ...ingredient, qty: e.currentTarget.value })} />
-      <select aria-label="Unit" value={ingredient.unit ?? ''} onChange={(e) => onChange({ ...ingredient, unit: e.currentTarget.value as Ingredient['unit'] })}>
+      <input class="editor-quantity" type="number" min="0" step="any" placeholder="Qty" aria-label="Quantity" value={ingredient.qty} onInput={(e) => onChange({ ...ingredient, qty: e.currentTarget.value })} />
+      <select class="editor-unit" aria-label="Unit" value={ingredient.unit ?? ''} onChange={(e) => onChange({ ...ingredient, unit: e.currentTarget.value as Ingredient['unit'] })}>
         <option value="">count</option>
         {UNITS.map((unit) => <option value={unit}>{unit}</option>)}
       </select>
-      <input class="editor-grow" placeholder="Ingredient" aria-label="Ingredient" value={ingredient.item} onInput={(e) => onChange({ ...ingredient, item: e.currentTarget.value })} />
-      <input placeholder="Group (optional)" aria-label="Ingredient group" value={ingredient.group} onInput={(e) => onChange({ ...ingredient, group: e.currentTarget.value })} />
-      <button type="button" class="btn-sm" onClick={onRemove} aria-label="Remove ingredient">×</button>
+      <input class="editor-grow editor-item" placeholder="Ingredient" aria-label="Ingredient" value={ingredient.item} onInput={(e) => onChange({ ...ingredient, item: e.currentTarget.value })} />
+      <input class="editor-group" placeholder="Group (optional)" aria-label="Ingredient group" value={ingredient.group} onInput={(e) => onChange({ ...ingredient, group: e.currentTarget.value })} />
+      <button type="button" class="btn-sm editor-remove" onClick={onRemove} aria-label="Remove ingredient">×</button>
     </div>
   );
 }
@@ -64,10 +64,10 @@ function IngredientRow({ ingredient, onChange, onRemove }: { ingredient: FormIng
 function StepRow({ step, index, onChange, onRemove }: { step: FormStep; index: number; onChange: (value: FormStep) => void; onRemove: () => void }) {
   return (
     <div class="editor-row editor-step-row">
-      <span class="editor-row-number">{index + 1}</span>
-      <textarea class="editor-grow" rows={2} placeholder="Describe this step" aria-label={`Step ${index + 1}`} value={step.text} onInput={(e) => onChange({ ...step, text: e.currentTarget.value })} />
-      <input type="number" min="1" placeholder="Timer sec" aria-label="Timer seconds" value={step.timer} onInput={(e) => onChange({ ...step, timer: e.currentTarget.value })} />
-      <button type="button" class="btn-sm" onClick={onRemove} aria-label={`Remove step ${index + 1}`}>×</button>
+      <span class="editor-row-number editor-step-number">{index + 1}</span>
+      <textarea class="editor-grow editor-step-text" rows={2} placeholder="Describe this step" aria-label={`Step ${index + 1}`} value={step.text} onInput={(e) => onChange({ ...step, text: e.currentTarget.value })} />
+      <input class="editor-step-timer" type="number" min="1" placeholder="Timer sec" aria-label="Timer seconds" value={step.timer} onInput={(e) => onChange({ ...step, timer: e.currentTarget.value })} />
+      <button type="button" class="btn-sm editor-step-remove" onClick={onRemove} aria-label={`Remove step ${index + 1}`}>×</button>
     </div>
   );
 }
