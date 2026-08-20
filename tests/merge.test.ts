@@ -33,10 +33,10 @@ describe('grocery merge — acceptance', () => {
     const count = merged[0].lines.find((l) => l.dimension === 'count')!;
     const mass = merged[0].lines.find((l) => l.dimension === 'mass')!;
     expect(count.display).toBe('2');
-    expect(mass.display).toBe('200 g');
+    expect(mass.display).toBe('7 oz');
     // count line is listed first
     expect(merged[0].lines[0].dimension).toBe('count');
-    expect(merged[0].display).toBe('onion — 2, plus 200 g');
+    expect(merged[0].display).toBe('onion — 2, plus 7 oz');
   });
 });
 

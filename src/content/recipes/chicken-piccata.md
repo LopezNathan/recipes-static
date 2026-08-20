@@ -11,36 +11,6 @@ tags:
 - quick
 source: https://themodernproper.com/chicken-piccata
 ingredients:
-- qty: null
-  unit: null
-  item: Boneless, skinless chicken breasts
-- qty: null
-  unit: null
-  item: Salt & pepper
-- qty: null
-  unit: null
-  item: Flour for dredging
-- qty: null
-  unit: null
-  item: Butter
-- qty: null
-  unit: null
-  item: Olive oil
-- qty: null
-  unit: null
-  item: Chicken stock
-- qty: null
-  unit: null
-  item: Shallots
-- qty: null
-  unit: null
-  item: Garlic
-- qty: null
-  unit: null
-  item: Lemons, they brighten everything, including our Lemon Butter Chicken.
-- qty: null
-  unit: null
-  item: Capers
 - qty: 2
   unit: lb
   item: chicken cutlets or breasts, boneless, skinless, butterflied to create thinner pieces

@@ -53,9 +53,9 @@ ingredients:
 - qty: 3.0
   unit: null
   item: cloves garlic
-- qty: null
+- qty: 1.0
   unit: null
-  item: 1-inch piece ginger
+  item: 1-inch piece fresh ginger, minced
 - qty: 0.5
   unit: cup
   item: finely diced red onion

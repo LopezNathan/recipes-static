@@ -91,8 +91,8 @@ npx wrangler pages deploy dist   # deploy the built site to Cloudflare Pages
   dimensions** (mass↔volume↔count). Same item by count and by mass = one entry
   with two lines.
 - Canonical bases: mass→g, volume→ml, count→unitless.
-- Display ladder picks the largest unit ≥ 1 (mass: kg, g; volume: cup, tbsp,
-  tsp).
+- Display ladder picks the largest unit ≥ 1 (mass: kg, lb, oz, g; volume: cup,
+  tbsp, tsp).
 
 ## Fraction display (`src/lib/fractions.ts`)
 

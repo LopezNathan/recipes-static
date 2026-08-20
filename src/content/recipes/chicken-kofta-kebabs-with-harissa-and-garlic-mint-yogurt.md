@@ -27,6 +27,7 @@ ingredients:
 - qty: 1.0
   unit: null
   item: garlic clove (minced)
+  key: garlic
   group: Kofta
 - qty: 0.5
   unit: cup
@@ -79,6 +80,7 @@ ingredients:
 - qty: 1.0
   unit: null
   item: garlic clove (grated or minced)
+  key: garlic
   group: Garlic-Mint Yogurt Sauce
 - qty: 0.25
   unit: cup

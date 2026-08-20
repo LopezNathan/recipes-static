@@ -31,6 +31,8 @@ const VOLUME: Record<string, number> = {
 // Display ladders: try units largest-factor-first, pick the largest with value >= 1.
 const MASS_LADDER: Array<[string, number]> = [
   ['kg', MASS.kg],
+  ['lb', MASS.lb],
+  ['oz', MASS.oz],
   ['g', MASS.g],
 ];
 const VOLUME_LADDER: Array<[string, number]> = [
@@ -65,11 +67,12 @@ export function trimNumber(n: number, maxDecimals = 2): string {
  * Format a base-unit quantity using the dimension's display ladder:
  * pick the largest unit whose value is >= 1, else the smallest unit.
  *
- * Volume renders with unicode fractions (⅓ cup, not 0.33 cup — nobody owns
- * a 0.33-cup measuring cup). Mass and count stay decimal: kitchen scales
- * read in decimal grams/kilos, and counts are already whole numbers.
+ * Volume and imperial mass (lb, oz) render with unicode fractions because
+ * nobody owns a 0.33-cup or 0.62-lb measuring tool. Decimal mass (kg, g)
+ * stays decimal: kitchen scales read in decimal grams/kilos.
  */
 function formatMass(value: number, unit: string): string {
+  if (unit === 'lb' || unit === 'oz') return formatFractional(value);
   // Grams rarely land on a round number once converted from oz/lb — nobody
   // measures to the hundredth of a gram, so round to a whole gram. Kilos
   // stay at 2 decimals (1.2 kg is meaningful on a kitchen scale).
