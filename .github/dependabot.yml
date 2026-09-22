@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      all-npm-version-updates:
+        patterns:
+          - "*"
+      all-npm-security-updates:
+        applies-to: security-updates
+        patterns:
+          - "*"
