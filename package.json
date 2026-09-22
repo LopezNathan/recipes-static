@@ -14,7 +14,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@astrojs/preact": "^6.0.2",
+    "@astrojs/preact": "^6.0.5",
     "astro": "^7.1.5",
     "js-yaml": "4.3.0",
     "preact": "^10.24.3",
