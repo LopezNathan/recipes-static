@@ -5,7 +5,15 @@ updates:
     schedule:
       interval: weekly
     groups:
-      all-npm-version-updates:
+      npm-minor-and-patch-updates:
+        update-types:
+          - minor
+          - patch
+        patterns:
+          - "*"
+      npm-major-updates:
+        update-types:
+          - major
         patterns:
           - "*"
       all-npm-security-updates:
