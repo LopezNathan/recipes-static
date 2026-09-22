@@ -67,6 +67,7 @@ export async function getFile(config: GitHubConfig, path: string, ref: string): 
     `${repositoryPath(config)}/contents/${path}?ref=${encodeURIComponent(ref)}`,
   );
   if (result.response.status === 404) return null;
+  if (result.response.status === 401) throw new Error('GitHub authentication failed (401). Check GITHUB_TOKEN.');
   if (!result.response.ok || !result.data.sha || typeof result.data.content !== 'string') {
     throw new Error(`Could not read recipe file (${result.response.status})`);
   }

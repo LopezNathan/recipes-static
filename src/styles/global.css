@@ -402,6 +402,9 @@ legend {
 }
 .editor-clear-rating:hover { color: var(--text); background: var(--border); }
 .editor-add-tag input { flex: 1; }
+.editor-import-row { display: flex; gap: 0.5rem; align-items: center; }
+.editor-import-row input { flex: 1; }
+.editor-import-warnings { margin: 0.75rem 0 0; padding-left: 1.25rem; color: #ffd58a; }
 .editor-message { padding: 0.7rem 0.9rem; border-radius: 7px; }
 .editor-message.error { color: #ffb4ab; background: rgba(255, 100, 80, 0.12); }
 .editor-message.success { color: var(--success); background: var(--success-weak); }
@@ -464,6 +467,7 @@ legend {
   .editor-step-timer { grid-area: timer; }
   .editor-step-remove { grid-area: remove; }
   .editor-add-tag { max-width: none; }
+  .editor-import-row { align-items: stretch; flex-direction: column; }
 }
 
 /* cook mode: ingredients | steps side by side on desktop */

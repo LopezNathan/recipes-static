@@ -1,6 +1,7 @@
 /** @jsxImportSource preact */
 import { useEffect, useState } from 'preact/hooks';
 import { recipeFrontmatterSchema, UNITS, type Ingredient, type RecipeFrontmatter, type RecipeStep } from '../../lib/recipeSchema';
+import type { ImportedRecipeDraft } from '../../lib/recipeImport';
 
 interface Props {
   slug?: string;
@@ -131,6 +132,9 @@ export default function RecipeEditor({ slug, existingTags }: Props) {
   const [body, setBody] = useState('');
   const [loading, setLoading] = useState(editing);
   const [submitting, setSubmitting] = useState(false);
+  const [importUrl, setImportUrl] = useState('');
+  const [importing, setImporting] = useState(false);
+  const [importWarnings, setImportWarnings] = useState<string[]>([]);
   const [message, setMessage] = useState<{ kind: 'error' | 'success'; text: string } | null>(null);
 
   useEffect(() => {
@@ -153,6 +157,27 @@ export default function RecipeEditor({ slug, existingTags }: Props) {
   const updateRecipe = (patch: Partial<RecipeFrontmatter>) => setRecipe((current) => ({ ...current, ...patch }));
   const updateTime = (field: 'prep' | 'cook', value: string) => updateRecipe({ time: { ...recipe.time, [field]: Number(value) } });
 
+  async function importFromUrl() {
+    setMessage(null); setImportWarnings([]); setImporting(true);
+    try {
+      const response = await fetch('/editor/api/import', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url: importUrl }) });
+      const responseBody = await response.text();
+      let result: { draft?: ImportedRecipeDraft; warnings?: string[]; error?: string };
+      try { result = JSON.parse(responseBody) as typeof result; } catch {
+        throw new Error(`The importer returned an unexpected response (HTTP ${response.status}). For local imports, run \`npm run build && npx wrangler pages dev dist\`; otherwise deploy the latest Pages Functions.`);
+      }
+      if (!response.ok || !result.draft) throw new Error(result.error || 'Could not import that recipe.');
+      const draft = result.draft;
+      setRecipe((current) => ({ ...current, ...draft, time: draft.time || current.time, tags: [] }));
+      setIngredients(draft.ingredients.length ? draft.ingredients.map((item) => ({ ...item, qty: item.qty === null ? '' : String(item.qty), key: item.key || '', group: item.group || '' })) : [emptyIngredient()]);
+      setSteps(draft.steps.length ? draft.steps.map((step) => ({ ...step, timer: step.timer === undefined ? '' : String(step.timer) })) : [emptyStep()]);
+      setImportWarnings(result.warnings || []);
+      setMessage({ kind: 'success', text: 'Imported a draft. Review every field, select tags, then create the recipe.' });
+    } catch (error) {
+      setMessage({ kind: 'error', text: error instanceof Error ? error.message : 'Could not import that recipe.' });
+    } finally { setImporting(false); }
+  }
+
   async function submit(event: SubmitEvent) {
     event.preventDefault();
     setMessage(null);
@@ -165,13 +190,13 @@ export default function RecipeEditor({ slug, existingTags }: Props) {
     setSubmitting(true);
     try {
       const response = await fetch('/editor/api/recipe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ mode: editing ? 'edit' : 'create', slug: activeSlug, recipe: validation.data, body }) });
-      const result = await response.json() as { slug?: string; error?: string };
+      const result = await response.json() as { slug?: string; mocked?: boolean; error?: string };
       if (!response.ok) throw new Error(result.error || 'Could not save recipe.');
-      if (!editing && result.slug) {
+      if (!editing && result.slug && !result.mocked) {
         setActiveSlug(result.slug);
         window.history.replaceState({}, '', `/editor/recipe?slug=${encodeURIComponent(result.slug)}`);
       }
-      setMessage({ kind: 'success', text: editing ? 'Recipe updated.' : 'Recipe created.' });
+      setMessage({ kind: 'success', text: result.mocked ? 'Recipe passed validation. Mock mode did not write or commit it.' : editing ? 'Recipe updated.' : 'Recipe created.' });
     } catch (error) {
       setMessage({ kind: 'error', text: error instanceof Error ? error.message : 'Could not save recipe.' });
     } finally { setSubmitting(false); }
@@ -183,6 +208,12 @@ export default function RecipeEditor({ slug, existingTags }: Props) {
     <form class="editor-form" onSubmit={submit}>
       <div class="editor-form-header"><div><h1>{editing ? recipe.title ? `Edit ${recipe.title}` : 'Edit recipe' : 'New recipe'}</h1>{!editing && <p class="muted">Save the recipe directly to GitHub.</p>}</div><a class="btn" href="/editor/">All recipes</a></div>
       {message && <p class={`editor-message ${message.kind}`} role="status">{message.text}</p>}
+
+      {!editing && <fieldset class="editor-import"><legend>Import from URL</legend>
+        <p class="muted editor-help">Imports Schema.org Recipe metadata from a public page into this form. Nothing is saved until you review it and click Create.</p>
+        <div class="editor-import-row"><input type="url" placeholder="https://example.com/recipe" aria-label="Recipe URL to import" value={importUrl} onInput={(e) => setImportUrl(e.currentTarget.value)} /><button type="button" disabled={importing} onClick={() => importFromUrl()}>{importing ? 'Importing…' : 'Import'}</button></div>
+        {importWarnings.length > 0 && <ul class="editor-import-warnings">{importWarnings.map((warning) => <li>{warning}</li>)}</ul>}
+      </fieldset>}
 
       <fieldset><legend>Recipe details</legend>
         <label>Title<input required value={recipe.title} onInput={(e) => updateRecipe({ title: e.currentTarget.value })} /></label>

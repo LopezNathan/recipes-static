@@ -7,6 +7,7 @@ interface Env {
   GITHUB_OWNER?: string;
   GITHUB_REPO?: string;
   GITHUB_BASE_BRANCH?: string;
+  MOCK_GITHUB?: string;
 }
 
 type Context = {
@@ -31,6 +32,9 @@ export async function onRequestGet({ request, env }: Context): Promise<Response>
   const slug = new URL(request.url).searchParams.get('slug');
   if (!slug || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
     return json({ error: 'A valid recipe slug is required.' }, 400);
+  }
+  if (env.MOCK_GITHUB === 'true') {
+    return json({ error: 'Mock save mode does not persist recipes, so saved recipes cannot be loaded.' }, 404);
   }
 
   try {
@@ -63,6 +67,10 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
   if (!slug || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
     return json({ error: 'A valid recipe slug could not be determined.' }, 400);
   }
+
+  // Local Pages development can exercise the import and the exact same Zod
+  // validation without granting the local server permission to write GitHub.
+  if (env.MOCK_GITHUB === 'true') return json({ slug, mocked: true });
 
   try {
     const config = githubConfig(env);
