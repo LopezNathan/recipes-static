@@ -14,16 +14,16 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@astrojs/preact": "^6.0.2",
-    "astro": "^7.1.5",
+    "@astrojs/preact": "^6.0.5",
+    "astro": "^7.3.3",
     "js-yaml": "5.4.2",
-    "preact": "^10.24.3",
-    "zod": "4.4.3"
+    "preact": "^10.29.8",
+    "zod": "4.6.5"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20260317.1",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^26.2.0",
+    "@types/node": "^26.6.2",
     "typescript": "^7.0.2",
     "vitest": "^5.0.1",
     "wrangler": "4.67.0"
