@@ -5,6 +5,10 @@ updates:
     schedule:
       interval: weekly
     groups:
+      cloudflare-tooling:
+        patterns:
+          - "wrangler"
+          - "@cloudflare/workers-types"
       npm-minor-and-patch-updates:
         update-types:
           - minor

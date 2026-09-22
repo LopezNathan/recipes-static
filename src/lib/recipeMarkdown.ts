@@ -1,4 +1,4 @@
-import yaml from 'js-yaml';
+import * as yaml from 'js-yaml';
 import { recipeFrontmatterSchema, type RecipeFrontmatter } from './recipeSchema';
 
 const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)([\s\S]*)$/;
@@ -38,11 +38,15 @@ function orderedData(data: RecipeFrontmatter): Record<string, unknown> {
 /** Serialize validated recipe data and markdown notes into the repository format. */
 export function serializeRecipeMarkdown(data: RecipeFrontmatter, body = ''): string {
   const parsed = recipeFrontmatterSchema.parse(data);
-  const frontmatter = yaml.dump(orderedData(parsed), {
+  // js-yaml v5 renamed `noArrayIndent` to `seqNoIndent`. Keep both while
+  // supporting v4 and v5; each version ignores the option it does not use.
+  const dumpOptions = {
     lineWidth: 120,
     noArrayIndent: true,
+    seqNoIndent: true,
     noRefs: true,
-  }).trimEnd();
+  } as unknown as yaml.DumpOptions;
+  const frontmatter = yaml.dump(orderedData(parsed), dumpOptions).trimEnd();
   // Keep the body’s leading newline when round-tripping existing files. New
   // notes get the conventional blank line after the closing delimiter.
   const serializedBody = body ? `\n${body}` : '\n';
