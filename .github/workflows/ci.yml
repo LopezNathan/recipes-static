@@ -17,7 +17,9 @@ jobs:
       - run: npm ci
       - name: Build (fails on invalid frontmatter)
         run: npm run build
-      - name: Type-check (including Pages Functions)
+      - name: Type-check (Astro + all sources)
         run: npm run typecheck
+      - name: Type-check (Cloudflare Pages Functions)
+        run: npm run typecheck:functions
       - name: Unit tests (merge + fractions)
         run: npm test

@@ -11,7 +11,8 @@
     "astro": "astro",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "typecheck:functions": "tsc --project functions/tsconfig.json --noEmit"
   },
   "dependencies": {
     "@astrojs/preact": "^6.0.5",
