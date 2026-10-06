@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@astrojs/preact": "^6.0.5",
-    "astro": "^7.3.3",
+    "astro": "^7.3.5",
     "js-yaml": "5.4.2",
     "preact": "^10.29.8",
     "zod": "4.6.5"
@@ -24,9 +24,9 @@
   "devDependencies": {
     "@cloudflare/workers-types": "5.20260919.1",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^26.6.2",
+    "@types/node": "^26.6.4",
     "typescript": "^7.0.2",
-    "vitest": "^5.0.1",
+    "vitest": "^5.0.3",
     "wrangler": "4.135.0"
   }
 }
