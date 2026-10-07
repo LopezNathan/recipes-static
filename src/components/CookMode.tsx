@@ -173,8 +173,10 @@ function useWakeLock() {
       if (!wakeLock) return;
       try {
         sentinel = await wakeLock.request('screen');
-      } catch {
-        // permission denied or unsupported state — ignore, screen just sleeps normally
+      } catch (e) {
+        // permission denied or unsupported state (e.g. missing PWA manifest
+        // on iOS Home Screen) — screen just sleeps normally
+        console.warn('wake lock denied', e);
       }
     }
 
