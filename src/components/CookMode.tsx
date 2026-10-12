@@ -159,36 +159,45 @@ function toggle(set: Set<number>, i: number): Set<number> {
 
 /**
  * Keep the screen awake while the recipe is open. iOS releases the lock
- * whenever the tab/app is backgrounded, so it must be re-requested on
- * visibilitychange (e.g. switching apps and back while cooking).
+ * whenever the tab/app is backgrounded (and on bfcache restore), so it must
+ * be re-requested on visibilitychange/pageshow, e.g. switching apps and back
+ * while cooking.
  */
 function useWakeLock() {
   useEffect(() => {
-    let sentinel: { release: () => Promise<void> } | null = null;
+    type Sentinel = EventTarget & { released: boolean; release: () => Promise<void> };
+    const wakeLock = (navigator as Navigator & {
+      wakeLock?: { request: (type: 'screen') => Promise<Sentinel> };
+    }).wakeLock;
+    if (!wakeLock) {
+      console.warn('wake lock unsupported');
+      return;
+    }
+
+    let sentinel: Sentinel | null = null;
+    let disposed = false;
 
     async function acquire() {
-      const wakeLock = (navigator as Navigator & {
-        wakeLock?: { request: (type: 'screen') => Promise<{ release: () => Promise<void> }> };
-      }).wakeLock;
-      if (!wakeLock) return;
+      if (disposed || document.visibilityState !== 'visible') return;
+      if (sentinel && !sentinel.released) return;
       try {
-        sentinel = await wakeLock.request('screen');
+        sentinel = await wakeLock!.request('screen');
+        if (disposed) sentinel.release().catch(() => {});
       } catch (e) {
-        // permission denied or unsupported state (e.g. missing PWA manifest
-        // on iOS Home Screen) — screen just sleeps normally
+        // permission denied or unsupported state (e.g. iOS < 18.4 Home Screen
+        // app, Low Power Mode) — screen just sleeps normally
         console.warn('wake lock denied', e);
       }
     }
 
-    function onVisibilityChange() {
-      if (document.visibilityState === 'visible') acquire();
-    }
-
     acquire();
-    document.addEventListener('visibilitychange', onVisibilityChange);
+    document.addEventListener('visibilitychange', acquire);
+    window.addEventListener('pageshow', acquire);
 
     return () => {
-      document.removeEventListener('visibilitychange', onVisibilityChange);
+      disposed = true;
+      document.removeEventListener('visibilitychange', acquire);
+      window.removeEventListener('pageshow', acquire);
       sentinel?.release().catch(() => {});
     };
   }, []);
