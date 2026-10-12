@@ -72,4 +72,5 @@ steps:
 - text: Spread the bottom halves of the toasted baguettes with half the garlic sauce. Top with the chicken and vegetables, sprinkle with mozzarella, and return to the middle rack until the cheese melts, 2–3 minutes.
   timer: 180
 - text: Divide the sandos and potatoes between plates. Serve with the remaining garlic sauce.
+created: 2026-08-15
 ---

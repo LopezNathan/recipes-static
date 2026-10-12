@@ -59,4 +59,5 @@ steps:
     to taste and serve.
 image: >-
   https://img.hellofresh.com/f_auto,fl_lossy,h_640,q_auto,w_1200/hellofresh_s3/image/6203c51288dbd95f422707d7-a539cdce.jpg
+created: 2026-09-21
 ---

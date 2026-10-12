@@ -62,4 +62,5 @@ steps:
 - text: Add the beans, if using, and taste for salt. For a thicker chili, stir in the torn tortilla pieces. Simmer for another 30 minutes.
   timer: 1800
 - text: Serve with Fritos.
+created: 2026-08-15
 ---

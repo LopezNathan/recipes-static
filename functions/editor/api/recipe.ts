@@ -63,6 +63,9 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
 
   const data: RecipeFrontmatter = validation.data;
   const mode = payload.mode === 'edit' ? 'edit' : 'create';
+  // "Recently added" sorts by `created`; stamp new recipes so they don't sink
+  // to the bottom as undated.
+  if (mode === 'create' && !data.created) data.created = new Date();
   const slug = mode === 'create' ? slugify(data.title) : payload.slug;
   if (!slug || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
     return json({ error: 'A valid recipe slug could not be determined.' }, 400);

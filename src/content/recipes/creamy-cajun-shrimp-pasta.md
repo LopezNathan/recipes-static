@@ -65,4 +65,5 @@ steps:
     stirring and adding more pasta water if needed, until sauce is smooth and glossy. Top with more Parmesan.
 image: >-
   https://hips.hearstapps.com/hmg-prod/images/creamy-cajun-pasta-lead-web-429-jd-del039925-67e4676dd7092.jpg?crop=1xw:1xh;center,top&resize=1400:*
+created: 2026-08-27
 ---

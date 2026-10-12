@@ -113,4 +113,5 @@ steps:
   timer: 2400
 - text: Remove the large lemongrass stalks and any star anise pods. Cook the noodles according to the package instructions, transfer to bowls, and ladle the stew over the top.
 - text: Garnish with cilantro, Thai basil, and raw onion. Serve with lime wedges.
+created: 2026-08-15
 ---
