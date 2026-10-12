@@ -33,14 +33,15 @@ function cleanRecipe(recipe: RecipeFrontmatter, ingredients: FormIngredient[], s
   return {
     ...recipe,
     source: recipe.source || null,
-    ingredients: ingredients.map((item) => ({
+    // Drop fully blank rows (e.g. a trailing "Add" row left empty); partially filled rows still validate.
+    ingredients: ingredients.filter((item) => [item.qty, item.item, item.key ?? '', item.group ?? ''].some((v) => v.trim()) || item.unit).map((item) => ({
       qty: item.qty.trim() === '' ? null : Number(item.qty),
       unit: item.unit || null,
       item: item.item.trim(),
       ...(item.key?.trim() ? { key: item.key.trim() } : {}),
       ...(item.group?.trim() ? { group: item.group.trim() } : {}),
     })),
-    steps: steps.map((step) => ({
+    steps: steps.filter((step) => step.text.trim() || step.timer.trim()).map((step) => ({
       text: step.text.trim(),
       ...(step.timer.trim() ? { timer: Number(step.timer) } : {}),
     })),
