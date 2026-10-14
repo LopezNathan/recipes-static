@@ -18,7 +18,7 @@
     "@astrojs/preact": "^6.0.6",
     "astro": "^7.3.8",
     "js-yaml": "5.4.3",
-    "preact": "^10.29.8",
+    "preact": "^11.0.1",
     "zod": "4.6.5"
   },
   "devDependencies": {
