@@ -2,7 +2,7 @@ import * as yaml from 'js-yaml';
 import { recipeFrontmatterSchema, type RecipeFrontmatter } from './recipeSchema';
 
 const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)([\s\S]*)$/;
-const FIELD_ORDER = ['title', 'servings', 'time', 'tags', 'source', 'ingredients', 'steps', 'image', 'rating', 'created'];
+const FIELD_ORDER = ['title', 'servings', 'time', 'tags', 'source', 'ingredients', 'steps', 'image', 'rating', 'created', 'cooked'];
 
 type ParsedRecipeMarkdown = {
   data: RecipeFrontmatter;

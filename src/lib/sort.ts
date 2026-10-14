@@ -3,7 +3,7 @@
  * its client-side re-sort so both agree on ordering (and on tie-breaks).
  */
 
-export type SortKey = 'added' | 'oldest' | 'title' | 'title-desc' | 'time' | 'rating';
+export type SortKey = 'added' | 'oldest' | 'title' | 'title-desc' | 'time' | 'rating' | 'cooked';
 
 export const DEFAULT_SORT: SortKey = 'added';
 
@@ -14,11 +14,12 @@ export const SORT_OPTIONS: ReadonlyArray<{ value: SortKey; label: string }> = [
   { value: 'title-desc', label: 'Name (Z–A)' },
   { value: 'time', label: 'Quickest first' },
   { value: 'rating', label: 'Highest rated' },
+  { value: 'cooked', label: 'Most cooked' },
 ];
 
 /**
- * The fields a sort needs. `created` is epoch ms and `rating` is 1-5, each 0
- * when the recipe has none. `minutes` is prep + cook, and 0 means "no time
+ * The fields a sort needs. `created` is epoch ms, `rating` is 1-5 and
+ * `cooked` is a count, each 0 when the recipe has none. `minutes` is prep + cook, and 0 means "no time
  * recorded" — a few recipes carry `time: {prep: 0, cook: 0}`.
  */
 export interface Sortable {
@@ -26,6 +27,7 @@ export interface Sortable {
   created: number;
   minutes: number;
   rating: number;
+  cooked: number;
 }
 
 type Comparator = (a: Sortable, b: Sortable) => number;
@@ -44,6 +46,7 @@ const comparators: Record<SortKey, Comparator> = {
   'title-desc': (a, b) => byTitle(b, a),
   time: (a, b) => unknownLast(a.minutes) - unknownLast(b.minutes) || byTitle(a, b),
   rating: (a, b) => b.rating - a.rating || byTitle(a, b),
+  cooked: (a, b) => b.cooked - a.cooked || byTitle(a, b),
 };
 
 export function isSortKey(value: string | null | undefined): value is SortKey {

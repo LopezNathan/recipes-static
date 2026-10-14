@@ -225,6 +225,7 @@ export default function RecipeEditor({ slug, existingTags }: Props) {
         </div>
         <label>Source URL<input type="url" value={recipe.source || ''} onInput={(e) => updateRecipe({ source: e.currentTarget.value || null })} /></label>
         <div class="editor-fields-2"><label>Image URL<input type="url" value={recipe.image || ''} onInput={(e) => updateRecipe({ image: e.currentTarget.value || undefined })} /></label><label>Rating<RatingPicker value={recipe.rating} onChange={(rating) => updateRecipe({ rating })} /></label></div>
+        <label>Times cooked<input type="number" min="0" step="1" value={recipe.cooked ?? ''} onInput={(e) => updateRecipe({ cooked: e.currentTarget.value === '' ? undefined : Number(e.currentTarget.value) })} /></label>
         <label>Tags<TagPicker tags={recipe.tags} available={existingTags} onChange={(tags) => updateRecipe({ tags })} /></label>
       </fieldset>
 

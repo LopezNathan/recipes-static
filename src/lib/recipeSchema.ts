@@ -32,6 +32,7 @@ export const recipeFrontmatterSchema = z.object({
   image: z.string().url().optional(),
   rating: z.number().int().min(1).max(5).optional(),
   created: z.coerce.date().optional(),
+  cooked: z.number().int().nonnegative().optional(),
 });
 
 export type RecipeFrontmatter = z.infer<typeof recipeFrontmatterSchema>;

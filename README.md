@@ -7,10 +7,30 @@ with Zod-validated frontmatter, deployed to Cloudflare Pages.
 
 ```bash
 npm install
-npm run dev            # http://localhost:4321
+npm run dev            # http://localhost:4321 — Astro only, no editor API
 npm run build          # astro build → dist/
 npm test               # vitest: grocery-merge and fraction rules
 ```
+
+### Local dev with the editor API (Pages Functions)
+
+`npm run dev` serves the site but not `functions/`, so the editor's
+import/save and the "I cooked this" button fail there. To exercise them, build
+and run the output under Wrangler:
+
+```bash
+# put MOCK_GITHUB=true in .dev.vars (see .dev.vars.example)
+npm run build && npm run pages:dev
+# or, without a .dev.vars:
+npm run build && npx wrangler pages dev dist --binding MOCK_GITHUB=true
+```
+
+Mock mode never calls GitHub: the editor and the cooked button load recipes
+from the local build (`dist/editor/source/*.md`), and saves only validate.
+Rebuild after editing recipe files. To commit for real from local, drop
+`MOCK_GITHUB` and set `GITHUB_TOKEN`, `GITHUB_OWNER`, `GITHUB_REPO`, and
+`GITHUB_BASE_BRANCH` in `.dev.vars` (a fine-grained token with Contents
+read/write on this repo).
 
 ## Structure
 
@@ -47,6 +67,10 @@ tests/                 # vitest
   independent per-step countdown timers.
 - **Edit on GitHub** link at the bottom of each recipe page, linking straight
   to that recipe's markdown file in GitHub's editor.
+- **Cooked count**: an "I cooked this" button on each recipe page bumps the
+  recipe's `cooked` frontmatter count via a commit (requires the editor's
+  Cloudflare Access session). Shown in the recipe meta and as a "Most cooked"
+  sort on the homepage.
 - **Grocery list** (`/grocery`): pick recipes and servings (saved in
   `localStorage`), quantities merge by item and dimension. Mass, volume, and
   count are never mixed — the same item measured two ways shows as

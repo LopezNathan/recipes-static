@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import CookMode from '../../components/CookMode.tsx';
+import CookedButton from '../../components/CookedButton.tsx';
 import { formatMinutes } from '../../lib/time';
 
 export async function getStaticPaths() {
@@ -28,6 +29,7 @@ const sourceHost = data.source ? new URL(data.source).hostname.replace(/^www\./,
       <span>Cook {formatMinutes(data.time.cook)}</span>
       <span>Total {formatMinutes(total)}</span>
       {data.rating && <span>{'★'.repeat(data.rating)}</span>}
+      {data.cooked ? <span>Cooked {data.cooked}×</span> : null}
     </div>
 
     {
@@ -60,6 +62,7 @@ const sourceHost = data.source ? new URL(data.source).hostname.replace(/^www\./,
     />
 
     <p class="muted recipe-edit-link">
+      <CookedButton client:visible slug={recipe.id} />
       <a
         href={`/editor/recipe?slug=${encodeURIComponent(recipe.id)}`}
         rel="noopener"

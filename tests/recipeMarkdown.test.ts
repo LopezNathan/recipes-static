@@ -28,6 +28,13 @@ describe('recipe markdown', () => {
     expect(output).not.toContain('T00:00:00');
   });
 
+  it('serializes the cooked count after created', () => {
+    const parsed = parseRecipeMarkdown(fs.readFileSync(path.join(recipesDir, 'beef-stew.md'), 'utf8'));
+    const output = serializeRecipeMarkdown({ ...parsed.data, cooked: 3 }, parsed.body);
+    expect(output).toMatch(/created: '2026-06-03'\ncooked: 3\n---/);
+    expect(parseRecipeMarkdown(output).data.cooked).toBe(3);
+  });
+
   it.each([
     ['Crème brûlée & eggs!', 'creme-brulee-and-eggs'],
     ['  repeated---hyphens  ', 'repeated-hyphens'],

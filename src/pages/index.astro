@@ -19,6 +19,7 @@ const recipes = sortRecipes(
     created: r.data.created ? r.data.created.getTime() : 0,
     minutes: totalTime(r.data.time),
     rating: r.data.rating ?? 0,
+    cooked: r.data.cooked ?? 0,
   })),
   DEFAULT_SORT,
 );
@@ -103,7 +104,7 @@ const restTags = sortedTags.slice(TOP_TAG_COUNT).map(([tag]) => tag);
 
   <div class="grid" id="recipeGrid">
     {
-      recipes.map(({ entry: r, title, created, minutes, rating }) => (
+      recipes.map(({ entry: r, title, created, minutes, rating, cooked }) => (
         <a
           class:list={['card', r.data.image ? 'has-image' : 'has-placeholder']}
           href={`/recipes/${r.id}/`}
@@ -112,6 +113,7 @@ const restTags = sortedTags.slice(TOP_TAG_COUNT).map(([tag]) => tag);
           data-created={created}
           data-minutes={minutes}
           data-rating={rating}
+          data-cooked={cooked}
           style={r.data.image ? `--card-image: url('${r.data.image}')` : undefined}
         >
           <h3>{title}</h3>
@@ -147,6 +149,7 @@ const restTags = sortedTags.slice(TOP_TAG_COUNT).map(([tag]) => tag);
       created: Number(el.dataset.created ?? 0),
       minutes: Number(el.dataset.minutes ?? 0),
       rating: Number(el.dataset.rating ?? 0),
+      cooked: Number(el.dataset.cooked ?? 0),
     }));
 
     function applyFilters() {

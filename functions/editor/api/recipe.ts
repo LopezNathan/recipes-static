@@ -1,6 +1,7 @@
 import { parseRecipeMarkdown, serializeRecipeMarkdown, slugify } from '../../../src/lib/recipeMarkdown';
 import { recipeFrontmatterSchema, type RecipeFrontmatter } from '../../../src/lib/recipeSchema';
 import { getFile, githubConfig, putFile } from '../../_lib/github';
+import { getMockRecipe, type AssetsBinding } from '../../_lib/mockRecipes';
 
 interface Env {
   GITHUB_TOKEN?: string;
@@ -8,6 +9,7 @@ interface Env {
   GITHUB_REPO?: string;
   GITHUB_BASE_BRANCH?: string;
   MOCK_GITHUB?: string;
+  ASSETS?: AssetsBinding;
 }
 
 type Context = {
@@ -34,7 +36,11 @@ export async function onRequestGet({ request, env }: Context): Promise<Response>
     return json({ error: 'A valid recipe slug is required.' }, 400);
   }
   if (env.MOCK_GITHUB === 'true') {
-    return json({ error: 'Mock save mode does not persist recipes, so saved recipes cannot be loaded.' }, 404);
+    // Load from the build output so the editor can be exercised offline.
+    const content = await getMockRecipe(env.ASSETS, request.url, slug);
+    if (!content) return json({ error: 'Recipe not found in the local build. Run `npm run build` first.' }, 404);
+    const parsed = parseRecipeMarkdown(content);
+    return json({ recipe: parsed.data, body: parsed.body });
   }
 
   try {

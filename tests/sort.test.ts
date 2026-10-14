@@ -4,10 +4,10 @@ import { DEFAULT_SORT, SORT_OPTIONS, isSortKey, sortRecipes } from '../src/lib/s
 const day = (iso: string) => new Date(iso).getTime();
 
 const recipes = [
-  { title: 'Beef Stew', created: day('2026-06-03'), minutes: 180, rating: 5 },
-  { title: 'Shakshuka', created: day('2026-07-19'), minutes: 30, rating: 0 },
-  { title: 'Aji Verde', created: day('2026-06-03'), minutes: 10, rating: 4 },
-  { title: 'Pozole', created: day('2026-07-26'), minutes: 90, rating: 0 },
+  { title: 'Beef Stew', created: day('2026-06-03'), minutes: 180, rating: 5, cooked: 2 },
+  { title: 'Shakshuka', created: day('2026-07-19'), minutes: 30, rating: 0, cooked: 6 },
+  { title: 'Aji Verde', created: day('2026-06-03'), minutes: 10, rating: 4, cooked: 0 },
+  { title: 'Pozole', created: day('2026-07-26'), minutes: 90, rating: 0, cooked: 2 },
 ];
 
 const titles = (key: Parameters<typeof sortRecipes>[1]) =>
@@ -38,7 +38,7 @@ describe('sortRecipes', () => {
   });
 
   it('puts recipes with no recorded time last, not first', () => {
-    const withUntimed = [...recipes, { title: 'Aaa', created: 0, minutes: 0, rating: 0 }];
+    const withUntimed = [...recipes, { title: 'Aaa', created: 0, minutes: 0, rating: 0, cooked: 0 }];
     expect(sortRecipes(withUntimed, 'time').at(-1)?.title).toBe('Aaa');
   });
 
@@ -46,8 +46,12 @@ describe('sortRecipes', () => {
     expect(titles('rating')).toEqual(['Beef Stew', 'Aji Verde', 'Pozole', 'Shakshuka']);
   });
 
+  it('sorts by times cooked, most first, ties by title', () => {
+    expect(titles('cooked')).toEqual(['Shakshuka', 'Beef Stew', 'Pozole', 'Aji Verde']);
+  });
+
   it('treats a missing created date as oldest', () => {
-    const withUndated = [...recipes, { title: 'Zzz', created: 0, minutes: 5, rating: 0 }];
+    const withUndated = [...recipes, { title: 'Zzz', created: 0, minutes: 5, rating: 0, cooked: 0 }];
     expect(sortRecipes(withUndated, 'added').at(-1)?.title).toBe('Zzz');
   });
 

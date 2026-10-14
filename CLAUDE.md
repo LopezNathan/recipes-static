@@ -36,6 +36,7 @@ steps:                     # required, non-empty
 image: url
 rating: 1..5
 created: date
+cooked: integer >= 0     # times cooked; bumped by the recipe page's "I cooked this" button
 ```
 
 Body below the frontmatter = free-form notes (markdown).

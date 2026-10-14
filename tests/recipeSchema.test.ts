@@ -19,7 +19,15 @@ describe('recipeFrontmatterSchema', () => {
     expect(result.data.image).toBeUndefined();
     expect(result.data.rating).toBeUndefined();
     expect(result.data.created).toBeUndefined();
+    expect(result.data.cooked).toBeUndefined();
     expect(result.data.tags).toEqual(['quick', 'one-pot']);
+  });
+
+  it('accepts a non-negative integer cooked count', () => {
+    expect(recipeFrontmatterSchema.safeParse({ ...validRecipe, cooked: 0 }).success).toBe(true);
+    expect(recipeFrontmatterSchema.safeParse({ ...validRecipe, cooked: 7 }).success).toBe(true);
+    expect(recipeFrontmatterSchema.safeParse({ ...validRecipe, cooked: -1 }).success).toBe(false);
+    expect(recipeFrontmatterSchema.safeParse({ ...validRecipe, cooked: 1.5 }).success).toBe(false);
   });
 
   it('rejects uppercase, underscored, and punctuated tags', () => {
