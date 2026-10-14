@@ -19,12 +19,12 @@
     "astro": "^7.3.8",
     "js-yaml": "5.4.3",
     "preact": "^10.29.8",
-    "zod": "4.6.5"
+    "zod": "4.6.6"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "5.20261003.1",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^26.6.4",
+    "@types/node": "^26.6.5",
     "typescript": "^7.0.2",
     "vitest": "^5.0.3",
     "wrangler": "4.147.0"
