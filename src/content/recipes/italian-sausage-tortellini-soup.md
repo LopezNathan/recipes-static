@@ -72,5 +72,5 @@ steps:
 image: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgXqX5MfJtWWbWxzoGirciiB2Q09X--PM540JbgrPY6e9DbbUNoqeB0mU&s=10
 rating: 5
 created: '2026-10-12'
-cooked: 1
+cooked: 2
 ---
