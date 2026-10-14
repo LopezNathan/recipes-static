@@ -22,11 +22,11 @@
     "zod": "4.6.5"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "5.20261003.1",
+    "@cloudflare/workers-types": "5.20261011.1",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^26.6.4",
     "typescript": "^7.0.2",
     "vitest": "^5.0.3",
-    "wrangler": "4.147.0"
+    "wrangler": "4.149.0"
   }
 }
