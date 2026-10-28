@@ -29,7 +29,7 @@ const sourceHost = data.source ? new URL(data.source).hostname.replace(/^www\./,
       <span>Cook {formatMinutes(data.time.cook)}</span>
       <span>Total {formatMinutes(total)}</span>
       {data.rating && <span>{'★'.repeat(data.rating)}</span>}
-      {data.cooked ? <span>Cooked {data.cooked}×</span> : null}
+      <span>Times cooked: {data.cooked ?? 0}</span>
     </div>
 
     {

@@ -14,7 +14,7 @@ export const SORT_OPTIONS: ReadonlyArray<{ value: SortKey; label: string }> = [
   { value: 'title-desc', label: 'Name (Z–A)' },
   { value: 'time', label: 'Quickest first' },
   { value: 'rating', label: 'Highest rated' },
-  { value: 'cooked', label: 'Most cooked' },
+  { value: 'cooked', label: 'Number of times cooked' },
 ];
 
 /**

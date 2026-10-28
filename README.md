@@ -69,7 +69,7 @@ tests/                 # vitest
   to that recipe's markdown file in GitHub's editor.
 - **Cooked count**: an "I cooked this" button on each recipe page bumps the
   recipe's `cooked` frontmatter count via a commit (requires the editor's
-  Cloudflare Access session). Shown in the recipe meta and as a "Most cooked"
+  Cloudflare Access session). Shown in the recipe meta and as a "Number of times cooked"
   sort on the homepage.
 - **Grocery list** (`/grocery`): pick recipes and servings (saved in
   `localStorage`), quantities merge by item and dimension. Mass, volume, and
