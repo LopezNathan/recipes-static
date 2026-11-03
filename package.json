@@ -15,18 +15,18 @@
     "typecheck:functions": "tsc --project functions/tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@astrojs/preact": "^6.0.6",
-    "astro": "^7.3.8",
-    "js-yaml": "5.4.3",
+    "@astrojs/preact": "^6.1.1",
+    "astro": "^7.4.4",
+    "js-yaml": "5.5.0",
     "preact": "^10.29.8",
-    "zod": "4.6.5"
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "5.20261003.1",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^26.6.4",
+    "@types/node": "^26.6.6",
     "typescript": "^7.0.2",
-    "vitest": "^5.0.3",
+    "vitest": "^5.0.5",
     "wrangler": "4.147.0"
   }
 }
